@@ -1,23 +1,3 @@
-
-
-## How to use this repo
-
-1. Use this template to create your GitHub project repo
-
-1. In your newly created repo click on the green Code button. 
-
-1. Then, from the Codespaces tab, click Create codespace on main.
-
-1. Wait for the workspace to open. This can take a few minutes.
-
-1. Open a new terminal and `pip3 install -r requirements.txt`
-
-1. Open the jupyter_notebooks directory, and click on the notebook you want to open.
-
-1. Click the kernel button and choose Python Environments.
-
-Note that the kernel says Python 3.12.1 as it inherits from the workspace, so it will be Python-3.12.1 as installed by Codespaces. To confirm this, you can use `! python --version` in a notebook code cell.
-
 ## Cloud IDE Reminders
 
 To log into the Heroku toolbelt CLI:
@@ -33,33 +13,80 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 
 
 ## Dataset Content
-This dataset simulates loan applications and approval outcomes for 2,000 individuals. It contains demographic, financial, and employment-related attributes that can be used to predict whether a loan application will be approved or rejected. The data has 8 columns and 2000 rows, this dataset size will be useful as its large enough to hopefully demonstrate patterns in the data and small enough to run quickly in codespace.
+
+The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/anishdevedward/loan-approval-dataset/data?select=loan_approval.csv). We created then a fictitious user story where predictive analytics can be applied in a real project in the workplace.
+
+This dataset shows loan applications and approval outcomes for 2,000 individuals. It contains demographic, financial, and employment-related attributes that can be used to predict whether a loan application will be approved or rejected. The data has 8 columns and 2000 rows, this dataset size will be useful as its large enough to hopefully demonstrate patterns in the data and small enough to run quickly in codespace.
 
 ```python
 df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
 ```
+
+| Variable          | Meaning                                                        | Units                                                         |
+|-------------------|----------------------------------------------------------------|---------------------------------------------------------------|
+| name              | Applicant name                                                 | Text for name                                            |
+| city              | Applicant's city/location                                      | Text for location (City)                     |
+| income            | Applicant's annual income                                      | Dollar amount (30,000 - 150,000)                              |
+| credit_score      | Applicant's credit score                                       | Numeric score (300 - 850)                                     |
+| loan_amount       | Amount of loan requested                                       | Dollar amount (1,037 - 49,999)                                |
+| years_employed    | Number of years with current employer                         | Years (0 - 40)                                                |
+| points            | Mortgage discount points paid upfront                         | Points (10 - 100)                                             |
+| loan_approved     | Whether loan was approved or not                               | True or False (Target variable)                               |
+
+
+## Project Terms & Jargon
+
+- An **applicant** is a person who has submitted a loan application to the financial institution.
+- An **approved loan** is a loan application that has been accepted by the institution and will receive funding.
+- A **rejected loan** (or rejected application) is a loan application that has been denied by the institution.
+- **Credit score** is a numerical representation of an applicant's creditworthiness.
+- **Points** (mortgage points or discount points) are fees paid upfront to reduce the interest rate on a loan. One point equals 1% of the loan amount.
+- **Years employed** refers to the length of time an applicant has been with their current employer, which is used to assess employment stability.
+- **Loan-to-income ratio** (LTI) compares the loan amount to the applicant's income.
+
 
 
 ## Business Requirements
 
 The client is a fictitious financial institution that processes a large number of loan applications daily. Manual review of loan applications is time-consuming and resource-intensive. The institution wants to understand what factors contribute most to loan approval decisions and whether loan approvals can be accurately predicted to streamline operations and improve risk assessment.
 
-What are the business objectives?
-Which variables are most associate with the target loan_approved to under the drivers of loan approval
-Rank the features by importance and there impact on the probability of getting approval.
-Is there any citys that has the most approvals for product and service insights
-Provide an actionable guide to potentical applicants by identifying top 3 influence factors to recommend specific improvements and higher chances of having an a loan approved.
-
-Is there any business objective that can be answered with conventional data analysis?
+1. The client is interested in determining which applicant variables are most strongly correlated with the loan approval outcome. They want a ranked list of variables to be provided based on their relevance and impact.
+2. The client aims to offer an evidence-based guide for potential applicants by identifying the top three influential factors that contribute to loan approval. These insights will be used to recommend specific improvements applicants can make to increase their chances of having a loan approved.
 
 
 
 ## Hypothesis and how to validate?
-* List here your project hypothesis(es) and how you envision validating it (them) 
+
+The client wants to know whether the data supports the following hypotheses:
+
+- **Hypothesis 1**: Applicants with higher credit scores tend to have higher approval rates.
+  - A correlation study can help in this investigation
+- **Hypothesis 2**: Applicants who have been employed longer have higher approval rates than those with shorter employment history.
+  - A correlation study can help in this investigation
+- **Hypothesis 3**: Applications with higher loan amounts relative to income (LTI ratio) have lower approval rates.
+  - A correlation study can help in this investigation
+  - Create loan-to-income ratio (LTI) = loan_amount / income as a derived feature
 
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
-* List your business requirements and a rationale to map them to the Data Visualizations and ML tasks
+- **Business Requirement 1:** Data Visualization and Correlation study
+	- We will inspect the data related to the applicant base.
+	- We will conduct a correlation study (Pearson and Spearman) to understand better how the variables are correlated to loan approval.
+	- We will plot the main variables against loan approval to visualize insights.
+	- We will analyse approval patterns by income ranges, credit score ranges, loan amounts, employment history, and loan-to-income ratios.
+
+- **Business Requirement 2:** Testing and Validating Hypotheses
+	- We want to test whether higher credit scores are associated with higher approval rates (Hypothesis 1).
+	- We want to test whether longer employment history is associated with higher approval rates (Hypothesis 2).
+	- We want to test whether higher loan-to-income ratios are associated with lower approval rates (Hypothesis 3).
+	- We will use correlation studies and statistical tests to validate these hypotheses.
+
+
+- **Business Requirement 3:** Classification and Risk Assessment
+	- We want to predict if an applicant will be approved or not. We want to build a binary classifier.
+	- We want to predict the probability of approval for an applicant to assess risk level.
+	- We want to identify which features are most important for approval decisions.
+	- We want to understand approval patterns to guide applicants on improving their chances of approval.
 
 
 ## ML Business Case
