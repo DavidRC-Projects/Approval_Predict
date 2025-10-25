@@ -1,12 +1,4 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-## Template Instructions
-
-Welcome,
-
-This is the Code Institute student template for the bring your own data project option in Predictive Analytics. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
-
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
 
 ## How to use this repo
 
@@ -41,11 +33,25 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 
 
 ## Dataset Content
-* Describe your dataset. Choose a dataset of reasonable size to avoid exceeding the repository's maximum size and to have a shorter model training time. If you are doing an image recognition project, we suggest you consider using an image shape that is 100px × 100px or 50px × 50px, to ensure the model meets the performance requirement but is smaller than 100Mb for a smoother push to GitHub. A reasonably sized image set is ~5000 images, but you can choose ~10000 lines for numeric or textual data. 
+This dataset simulates loan applications and approval outcomes for 2,000 individuals. It contains demographic, financial, and employment-related attributes that can be used to predict whether a loan application will be approved or rejected. The data has 8 columns and 2000 rows, this dataset size will be useful as its large enough to hopefully demonstrate patterns in the data and small enough to run quickly in codespace.
+
+```python
+df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
+```
 
 
 ## Business Requirements
-* Describe your business requirements
+
+The client is a fictitious financial institution that processes a large number of loan applications daily. Manual review of loan applications is time-consuming and resource-intensive. The institution wants to understand what factors contribute most to loan approval decisions and whether loan approvals can be accurately predicted to streamline operations and improve risk assessment.
+
+What are the business objectives?
+Which variables are most associate with the target loan_approved to under the drivers of loan approval
+Rank the features by importance and there impact on the probability of getting approval.
+Is there any citys that has the most approvals for product and service insights
+Provide an actionable guide to potentical applicants by identifying top 3 influence factors to recommend specific improvements and higher chances of having an a loan approved.
+
+Is there any business objective that can be answered with conventional data analysis?
+
 
 
 ## Hypothesis and how to validate?
@@ -57,7 +63,7 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 
 
 ## ML Business Case
-* In the previous bullet, you potentially visualized an ML task to answer a business requirement. You should frame the business case using the method we covered in the course 
+
 
 
 ## Dashboard Design
