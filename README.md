@@ -68,6 +68,13 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 
 ## Unfixed Bugs
 * You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable to consider, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
+Added the code ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} \
+    && rm {DestinationFolder}/*.zip \
+    && rm kaggle.json
+    this required - o to overwrite the zip command as there as already a csv file uploaded
+
+
+
 
 ## Deployment
 ### Heroku
