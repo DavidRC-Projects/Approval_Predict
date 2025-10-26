@@ -91,6 +91,15 @@ The client wants to know whether the data supports the following hypotheses:
 
 ## ML Business Case
 
+We want an ML model to predict if a loan application will be approved based on historical data from the loan application database. The target variable is categorical and contains 2-classes. We consider a classification model. It is a supervised model, a 2-class, single-label, classification model output: 0 (not approved), 1 (approved).
+
+Our ideal outcome is to provide our loan officers with reliable insight into processing applications with higher accuracy and efficiency.
+
+**The model success metrics are:**
+- At least 80% Recall for Approved, on train and test set
+- At least 80% Precision for Approved, on train and test set
+
+
 
 
 ## Dashboard Design
