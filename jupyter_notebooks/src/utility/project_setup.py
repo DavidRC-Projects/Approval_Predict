@@ -2,7 +2,7 @@ import os
 import sys
 
 def setup_project_path():
-    """Set up the project path for imports and data access"""
+    """Set up the project path for data access"""
     current_dir = os.getcwd()
     
     if 'jupyter_notebooks' in current_dir:
