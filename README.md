@@ -115,6 +115,9 @@ Added the code ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} \
     && rm kaggle.json
     this required - o to overwrite the zip command as there as already a csv file uploaded
 
+	ValueError: Could not interpret value `loan_to_income` for `x`. An entry with this name does not appear in `data`.
+	Fixed the plot numerical function by adding df['loan_to_income'] = df['loan_amount'] / df['income'] as when plot_numerical was called it was unable to find the loan_to_income variable. This code had already been noted prior to the function. 
+
 
 
 
