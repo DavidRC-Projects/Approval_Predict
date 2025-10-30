@@ -51,7 +51,7 @@ df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
 The client is a fictitious financial institution that processes a large number of loan applications daily. Manual review of loan applications is time-consuming and resource-intensive. The institution wants to understand what factors contribute most to loan approval decisions and whether loan approvals can be accurately predicted to streamline operations and improve risk assessment.
 
 1. The client is interested in determining which applicant variables are most strongly correlated with the loan approval outcome. They want a ranked list of variables to be provided based on their relevance and impact.
-2. The client aims to offer an evidence-based guide for potential applicants by identifying the top three influential factors that contribute to loan approval. These insights will be used to recommend specific improvements applicants can make to increase their chances of having a loan approved.
+2. The client aims to offer a guide for potential applicants by identifying the influential factors that contribute to loan approval. These insights will be used to recommend specific improvements for applicants and guide them to increase their chances of having a loan approved.
 
 
 
