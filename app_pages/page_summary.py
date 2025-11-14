@@ -7,16 +7,15 @@ def page_summary_body():
     st.info(
         f"**Dataset Snapshot**\n"
         f"* Source: Kaggle loan approval dataset with 2,000 applications.\n"
-        f"* Each record includes applicant demographics, financial indicators, "
-        f"employment history, loan request details, and approval outcome.\n"
-        f"* We created a realistic workplace scenario where loan officers need "
-        f"decision support to process applications faster and more consistently.\n\n"
+        f"* Each record includes applicant demographics, credit score, points, "
+        f"employment history, loan amount, income and approval outcome.\n"
+        f"* We created a workplace scenario where loan officers need"
+        f"decision support with an aim to process applications faster.\n\n"
         f"**Key Terminology**\n"
-        f"* **Applicant** – person requesting the loan.\n"
-        f"* **Approved loan** – application accepted for funding.\n"
-        f"* **Rejected loan** – application denied.\n"
-        f"* **Credit score** – numeric proxy for creditworthiness (300–850).\n"
-        f"* **Loan-to-income ratio** – loan amount divided by annual income."
+        f"* **Applicant** is a person requesting the loan.\n"
+        f"* **Approved loan** is an application accepted for funding.\n"
+        f"* **Rejected loan** is an application denied.\n"
+        f"* **Loan-to-income ratio** is the loan amount divided by annual income."
     )
 
     st.write(
@@ -26,10 +25,9 @@ def page_summary_body():
 
     st.success(
         f"**Business Requirements**\n"
-        f"* **Requirement1 Feature insight:** Identify which applicant variables "
+        f"* **Requirement 1 Feature insight:** Identify which applicant variables "
         f"drive approval outcomes and explain the patterns we observe.\n"
-        f"* **BR2 Applicant guidance:** Provide an interactive predictor "
-        f"that estimates approval probability (without relying on the legacy "
-        f"points feature) and offers actionable tips to improve approval odds."
+        f"* **Requirement 2 Applicant guidance:** Provide an interactive predictor "
+        f"that estimates approval probability and offers tips to improve approval"
     )
 
