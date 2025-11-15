@@ -6,7 +6,7 @@ import joblib
 
 @st.cache_data
 def load_telco_data():
-    df = pd.read_csv("outputs/datasets/collection/TelcoCustomerChurn.csv")
+    df = pd.read_csv("outputs/datasets/collection/loan_approval.csv")
     return df
 
 
