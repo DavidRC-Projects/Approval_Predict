@@ -1,7 +1,6 @@
 import streamlit as st
 from app_pages.multipage import MultiPage
 
-
 from app_pages.page_summary import page_summary_body
 from app_pages.page_feature_impact import page_feature_impact_body
 from app_pages.page_approval_predictor import page_approval_predictor_body
