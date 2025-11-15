@@ -22,11 +22,27 @@ def page_approval_predictor_body():
 
     ##Loads the cleaned loan-approval dataset (calling load_approval_data() and making sure loan_to_income exists
     dataset = _load_dataset()
+    ranges = {
+    "income": (int(dataset["income"].min()), int(dataset["income"].max())),
+    "loan_amount": (int(dataset["loan_amount"].min()), int(dataset["loan_amount"].max())),
+    "credit_score": (int(dataset["credit_score"].min()), int(dataset["credit_score"].max())),
+    "years_employed": (int(dataset["years_employed"].min()), int(dataset["years_employed"].max())),
+    }
+    st.markdown(
+    f"""
+    Please use the input ranges (based on training data). Adjust the values below to see how they impact loan approval.
+    - **Income:** `${ranges['income'][0]:,} — ${ranges['income'][1]:,}` 
+    - **Loan amount:** `${ranges['loan_amount'][0]:,} — ${ranges['loan_amount'][1]:,}` 
+    - **Credit score:** `{ranges['credit_score'][0]} — {ranges['credit_score'][1]}` 
+    - **Years employed:** `{ranges['years_employed'][0]} — {ranges['years_employed'][1]} years`
+    """
+)
     X_live = _draw_input_widgets(dataset)
 
 
     if st.button("Run Predictive Analysis"):
         predict_loan_approval(X_live, pipeline)
+    
 
 
 def _load_dataset():
@@ -37,6 +53,7 @@ def _load_dataset():
 
 
 def _draw_input_widgets(df):
+    
     X_live = pd.DataFrame(index=[0])
 
     col1, col2, col3, col4 = st.columns(4)
@@ -49,6 +66,7 @@ def _draw_input_widgets(df):
             max_value=int(df[feature].max()),
             value=int(df[feature].median()),
             step=1000,
+            format="%d",
         )
         X_live[feature] = widget
 
@@ -60,6 +78,7 @@ def _draw_input_widgets(df):
             max_value=int(df[feature].max()),
             value=int(df[feature].median()),
             step=500,
+            format="%d",
         )
         X_live[feature] = widget
 
