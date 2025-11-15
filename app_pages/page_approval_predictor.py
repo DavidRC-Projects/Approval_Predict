@@ -3,6 +3,7 @@ import streamlit as st
 
 from src.data_management import load_loan_approval_data, load_pkl_file
 from src.machine_learning.approval_predictor import predict_loan_approval
+from src.approval_guidance import guidance
 
 
 def page_approval_predictor_body():
@@ -23,26 +24,26 @@ def page_approval_predictor_body():
     ##Loads the cleaned loan-approval dataset (calling load_approval_data() and making sure loan_to_income exists
     dataset = _load_dataset()
     ranges = {
-    "income": (int(dataset["income"].min()), int(dataset["income"].max())),
-    "loan_amount": (int(dataset["loan_amount"].min()), int(dataset["loan_amount"].max())),
-    "credit_score": (int(dataset["credit_score"].min()), int(dataset["credit_score"].max())),
-    "years_employed": (int(dataset["years_employed"].min()), int(dataset["years_employed"].max())),
+        "income": (int(dataset["income"].min()), int(dataset["income"].max())),
+        "loan_amount": (int(dataset["loan_amount"].min()), int(dataset["loan_amount"].max())),
+        "credit_score": (int(dataset["credit_score"].min()), int(dataset["credit_score"].max())),
+        "years_employed": (int(dataset["years_employed"].min()), int(dataset["years_employed"].max())),
     }
     st.markdown(
     f"""
-    Please use the input ranges (based on training data). Adjust the values below to see how they impact loan approval.
-    - **Income:** `${ranges['income'][0]:,} — ${ranges['income'][1]:,}` 
-    - **Loan amount:** `${ranges['loan_amount'][0]:,} — ${ranges['loan_amount'][1]:,}` 
-    - **Credit score:** `{ranges['credit_score'][0]} — {ranges['credit_score'][1]}` 
-    - **Years employed:** `{ranges['years_employed'][0]} — {ranges['years_employed'][1]} years`
+        Please use the input ranges (based on training data). Adjust the values below to see how they impact loan approval.
+        - **Income:** `${ranges['income'][0]:,} — ${ranges['income'][1]:,}` 
+        - **Loan amount:** `${ranges['loan_amount'][0]:,} — ${ranges['loan_amount'][1]:,}` 
+        - **Credit score:** `{ranges['credit_score'][0]} — {ranges['credit_score'][1]}` 
+        - **Years employed:** `{ranges['years_employed'][0]} — {ranges['years_employed'][1]} years`
     """
 )
     X_live = _draw_input_widgets(dataset)
 
 
     if st.button("Run Predictive Analysis"):
-        predict_loan_approval(X_live, pipeline)
-    
+        prediction = predict_loan_approval(X_live, pipeline)
+        guidance(X_live, dataset, prediction)
 
 
 def _load_dataset():
@@ -107,4 +108,4 @@ def _draw_input_widgets(df):
     X_live["loan_to_income"] = X_live["loan_amount"] / X_live["income"]
     return X_live
 
-
+    
