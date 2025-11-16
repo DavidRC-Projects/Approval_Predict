@@ -10,9 +10,9 @@ from app_pages.page_final_model import page_final_model_body
 app = MultiPage(app_name="Approval Predictor Dashboard")
 
 app.add_page("Quick Project Summary", page_summary_body)
-app.add_page("Feature Impact Study (Legacy Model)", page_feature_impact_body)
-app.add_page("Approval Predictor (Without Points)", page_approval_predictor_body)
+app.add_page("Feature Impact Study", page_feature_impact_body)
+app.add_page("Approval Predictor", page_approval_predictor_body)
 app.add_page("Project Hypotheses and Findings", page_project_findings_body)
-app.add_page("Final ML Model (Without Points)", page_final_model_body)
+app.add_page("Final ML Model", page_final_model_body)
 
 app.run()

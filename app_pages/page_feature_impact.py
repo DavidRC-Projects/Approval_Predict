@@ -65,19 +65,6 @@ def page_feature_impact_body():
         f"**Features included in the study:** {', '.join(vars_to_study)}"
     )
 
-    st.info(
-    """
-    ### **Conclusions**
-
-    - Applicants with **higher points** are more likely to be approved.  
-    - Applicants with **higher credit scores** are more likely to be approved.  
-    - Applicants with **low points** and **low credit scores** show a strong likelihood of rejection.  
-    - **Income**, **loan amount**, and **years employed** show weaker relationships with approval outcomes.  
-    - **City** has almost no measurable effect on approval.  
-    - The parallel categories analysis highlights a strong link between **loan-to-income ratio** and loan approval decisions.  
-    """
-    )
-
 
     df_eda = df_preview.filter(vars_to_study + ['loan_approved'])
     target_var = 'loan_approved'
@@ -85,6 +72,35 @@ def page_feature_impact_body():
 
     with st.expander("Show Numerical Feature Distributions"):
         plot_numerical(df_eda, vars_to_study, target_var)
+
+    with st.expander("Show Correlation Heatmap"):
+        corr = df_eda.corr(numeric_only=True)
+
+        fig, ax = plt.subplots(figsize=(10, 6))
+        sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
+        st.pyplot(fig)
+
+    with st.expander("Show Parallel Categories Plot"):
+        df_disc = discretize_for_parallel(df_eda)
+
+        fig = px.parallel_categories(
+            df_disc[['credit_score', 'points', 'loan_to_income', 'loan_approved']],
+            color="loan_approved",
+            color_continuous_scale=px.colors.sequential.Plasma
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+
+    st.subheader("Conclusions")
+    st.info(
+    """
+    - Applicants with **higher points** are more likely to be approved.  
+    - Applicants with **higher credit scores** are more likely to be approved.  
+    - Applicants with **low points** and **low credit scores** show a strong likelihood of rejection.  
+    - **Income**, **loan amount**, and **years employed** show weaker relationships with approval outcomes.   
+    - The parallel categories analysis highlights a strong link between **loan-to-income ratio** and loan approval decisions.  
+    """
+    )
 
 
 
