@@ -1,8 +1,3 @@
-import pandas as pd
-from imblearn.over_sampling import SMOTE
-from feature_engine.transformation import BoxCoxTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import RobustScaler
 from feature_engine.discretisation import ArbitraryDiscretiser
 import numpy as np
 from pathlib import Path
@@ -32,49 +27,6 @@ def engineer_features(df):
     engineered["loan_to_income"] = engineered["loan_amount"] / engineered["income"]
     return engineered
 
-
-def get_features_and_target(df: pd.DataFrame):
-    """
-    Split the engineered dataframe into feature matrix X and target vector y.
-    """
-    engineered = engineer_features(df)
-    X = engineered[APPROVAL_FEATURES].copy()
-    y = engineered[TARGET_COLUMN].copy()
-    return X, y
-
-
-def balance_with_smote(X: pd.DataFrame, y: pd.Series, random_state: int = 42):
-    """
-    SMOTE balancing to address the class imbalance in the target(loan_approved).
-    """
-    smote = SMOTE(sampling_strategy="minority", random_state=random_state)
-    return smote.fit_resample(X, y)
-
-
-def build_feature_pipeline():
-    """
-    Construct the transformation stack used before modeling.
-    """
-    return Pipeline(
-        steps=[
-            ("boxcox", BoxCoxTransformer(variables=["loan_to_income"])),
-            ("scaler", RobustScaler()),
-        ]
-    )
-
-
-def build_classification_pipeline(model):
-    """
-    Create the classification pipeline with the following steps:
-    BoxCoxTransformer, RobustScaler and the model
-    """
-    return Pipeline(
-        steps=[
-            ("boxcox", BoxCoxTransformer(variables=["loan_to_income"])),
-            ("scaler", RobustScaler()),
-            ("model", model),
-        ]
-    )
 
 def discretize_for_parallel(df):
     """
