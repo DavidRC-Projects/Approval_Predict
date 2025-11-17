@@ -67,6 +67,9 @@ The client wants to know whether the data supports the following hypotheses:
   - A correlation study can help in this investigation
   - Create loan-to-income ratio (LTI) = loan_amount / income as a derived feature
 
+- **Null Hypothesis**
+-There is no significant relationship between applicant features and loan approval outcomes. Approval decisions cannot be predicted from these features due to insufficient data.
+
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
 - **Business Requirement 1:** Data Visualization and Correlation study

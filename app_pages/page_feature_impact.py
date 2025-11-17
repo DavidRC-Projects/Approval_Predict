@@ -91,6 +91,43 @@ def page_feature_impact_body():
         st.plotly_chart(fig, use_container_width=True)
 
 
+    corr_spearman = df_preview.corr(method="spearman")["loan_approved"] \
+        .sort_values(key=abs, ascending=False)[1:].head(5)
+
+    corr_pearson = df_preview.corr(method="pearson")["loan_approved"] \
+        .sort_values(key=abs, ascending=False)[1:].head(5)
+
+    correlation_sets = {
+        "Top 5 Pearson Correlations": corr_pearson,
+        "Top 5 Spearman Correlations": corr_spearman
+    }
+
+    for title, corr_series in correlation_sets.items():
+    
+        df_plot = pd.DataFrame({
+            "Feature": corr_series.index,
+            "Correlation": corr_series.values
+        })
+
+        df_plot["abs_correlation"] = df_plot["Correlation"].abs()
+
+        st.write(f"### {title}")
+
+        st.data_editor(
+            df_plot[["Feature", "abs_correlation"]],
+            column_config={
+                "abs_correlation": st.column_config.ProgressColumn(
+                    "Correlation Strength",
+                    help=f"Absolute {title.split()[2]} correlation with loan approval",
+                    format="%.2f",
+                    min_value=0.0,
+                    max_value=1.0,
+                ),
+            },
+            hide_index=True,
+            disabled=True,
+        )
+
     st.subheader("Conclusions")
     st.info(
     """
