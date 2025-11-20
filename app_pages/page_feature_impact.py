@@ -37,6 +37,7 @@ def plot_numerical(df, vars_to_study, target_var):
 
 def page_feature_impact_body():
     st.title("Feature Impact Analysis")
+
     raw_dataset = load_loan_approval_data()
     
     st.subheader("Dataset Overview")
