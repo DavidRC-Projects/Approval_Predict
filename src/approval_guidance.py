@@ -1,6 +1,7 @@
 import streamlit as st
 
 def guidance(X_live, dataset, prediction):
+    """Display tailored guidance messages based on model prediction."""
     medians = {
         "credit_score": dataset["credit_score"].median(),
         "income": dataset["income"].median(),
@@ -36,11 +37,3 @@ def guidance(X_live, dataset, prediction):
         st.info(
             "### Your profile is close to approval.\n"
             "Small improvements across each metric could raise your approval odds.")
-
-
-def loan_to_income_guidance(X_live, dataset):
-    
-    median_loan_to_income = {"loan_to_income": dataset["loan_to_income"].median()}
-    loan_to_income_tip = []
-    if X_live.at[0, "loan_to_income"] > median_loan_to_income["loan_to_income"]:
-        loan_to_income_tip.append(f"Reduce loan-to-income below ~{median_loan_to_income['loan_to_income']:.2f}.")
