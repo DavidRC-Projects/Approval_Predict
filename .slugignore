@@ -1,0 +1,15 @@
+# Ignore virtual environments
+.venv/
+venv/
+
+# Ignore datasets (raw + cleaned)
+outputs/datasets/
+datasets/
+data/
+
+# Ignore ML pipeline data except final model
+outputs/ml_pipeline/approval_prediction/v1/
+outputs/ml_pipeline/approval_prediction/v2/X_train.csv
+outputs/ml_pipeline/approval_prediction/v2/X_test.csv
+outputs/ml_pipeline/approval_prediction/v2/y_train.csv
+outputs/ml_pipeline/approval_prediction/v2/y_test.csv
