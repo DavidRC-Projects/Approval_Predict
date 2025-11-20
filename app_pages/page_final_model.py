@@ -32,6 +32,28 @@ def load_data_splits():
 def page_final_model_body():
     st.title("Final ML Model")
 
+    st.subheader("Feature Importance Summary")
+
+    st.info(
+    """
+    ### What the Feature Importance Plot Tells Us
+
+    - **Credit Score** is the dominant predictor in the model.  
+
+    - **Loan-to-Income Ratio** is the second strongest influence.  
+      Applicants with more affordable loans relative to income are more likely to be approved.
+
+    - **Income** and **Years Employed** add moderate predictive value.  
+      They improve the model but do not drive decisions on their own.
+
+    - **Loan Amount** has minimal impact, especially when credit score is high or low.
+
+    **In summary:**  
+    Loan approval is primarily driven by **credit score** and **affordability (loan-to-income)**.
+    Other features help fine-tune predictions but do not strongly shift outcomes.
+    """
+    )
+
     pipeline = load_pipeline()
     feat_importance = load_feature_importance()
     X_train, X_test, y_train, y_test = load_data_splits()
@@ -40,6 +62,34 @@ def page_final_model_body():
     st.image(feat_importance, caption="Feature Importance")
 
     st.subheader("Model Performance")
+
+    st.subheader("Model Performance Overview")
+
+    st.info(
+    """
+    ### Train vs Test Performance
+
+    **Train Accuracy:** 92%  
+    **Test Accuracy:** 88%
+
+    The model performs very strongly on both datasets, indicating:
+    - No signs of overfitting (train and test scores are close)
+    - Good generalisation to unseen applicants
+
+    ### Train Set Observations
+    - Very high precision (91%) and recall (93%) for the *approved* class  
+    - This indicates the model will most of the time identify approved applicants correctly 
+
+    ### Test Set Observations
+    - Precision (86%) and recall (88%) for *approved* remain strong  
+    - Only a small drop from the train set 
+    - Confirms the model is reliable and not overly tuned to the training data
+
+    **Conclusion:**  
+    The model provides robust predictions with strong precision and recall.
+    """
+    )
+
     label_map = ["Rejected", "Approved"]
 
     clf_performance(

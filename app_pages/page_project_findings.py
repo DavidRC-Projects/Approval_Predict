@@ -14,14 +14,14 @@ def page_project_findings_body():
 
     st.info(
         "Before modelling we believed that:\n\n"
-        "(1) higher credit scores lead to more approvals.\n"
-        "(2) longer employment history improves approval odds.\n"
-        "(3) high loan-to-income ratios reduce approval chances."
+        "- (1) higher credit scores lead to more approvals.\n"
+        "- (2) longer employment history improves approval odds.\n"
+        "- (3) high loan-to-income ratios reduce approval chances."
     )
 
     st.subheader("Model Success Metrics highlights")
     col1, col2 = st.columns(2)
-    col1.metric("Recall (approved class)", "87%")
+    col1.metric("Recall (approved class)", "88%")
     col2.metric("Precision (approved class)", "86%")
 
 
