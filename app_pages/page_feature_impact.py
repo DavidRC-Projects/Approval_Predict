@@ -65,6 +65,28 @@ def page_feature_impact_body():
         f"**Features included in the study:** {', '.join(vars_to_study)}"
     )
 
+    st.subheader("Numerical Feature Analysis Influencing Loan Approval")
+
+    if st.checkbox("Summary of numerical feature insights from the plots below"):
+
+        st.write(
+    """
+    - **Points** and **Credit Score** are the strongest predictors.  
+    Approved applicants consistently have *much higher* values, with clear separation between approved and rejected groups.
+
+    - **Income** shows a moderate positive effect.  
+    Higher-income applicants are more likely to be approved, but the impact is less pronounced than points and credit score.
+
+    - **Loan Amount** has a mild negative relationship.  
+    Applicants requesting larger loans tend to be rejected more often, though the difference is not as strong as other variables.
+
+    - **Years Employed** shows only a weak relationship.  
+    Longer employment history helps slightly, but there is substantial overlap between the two groups.
+
+    - The **Loan-to-Income Ratio** is a significant affordability indicator.  
+    Lower ratios are associated with approvals, while higher ratios and outliers indicate financial risk and more frequent rejections.
+    """
+    )
 
     df_eda = df_preview.filter(vars_to_study + ['loan_approved'])
     target_var = 'loan_approved'
@@ -73,12 +95,35 @@ def page_feature_impact_body():
     with st.expander("Show Numerical Feature Distributions"):
         plot_numerical(df_eda, vars_to_study, target_var)
 
+    st.subheader("Correlation Heatmap Analysis")
+
+    if st.checkbox("Show summary of correlation heatmap insights"):
+        st.write(
+        """
+        - **Points** and **Credit Score** show the strongest positive correlation with loan approval.  
+        - **Income** has a weak positive correlation, indicaating a higher income slightly improves approval.  
+        - **Loan Amount** shows a slight negative relationship, suggesting larger requests slightly reduce approval odds.  
+        - **Years Employed** has very small correlation with approval outcomes.  
+        """
+        )
+
     with st.expander("Show Correlation Heatmap"):
         corr = df_eda.corr(numeric_only=True)
 
         fig, ax = plt.subplots(figsize=(10, 6))
         sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
         st.pyplot(fig)
+
+    st.subheader("Parallel Categories Plot Analysis")
+
+    if st.checkbox("Show summary of parallel categories insights"):
+        st.write(
+        """
+        - Applicants with **high points**, **high credit scores**, and **low loan-to-income ratios** cluster strongly toward approval.  
+        - Applicants with **low points**, **low credit scores**, or **high loan-to-income ratios** frequently fall into the rejected category.  
+        - The plot reinforces that **creditworthiness and affordability** jointly drive approval outcomes.
+        """
+        )
 
     with st.expander("Show Parallel Categories Plot"):
         df_disc = discretize_for_parallel(df_eda)
