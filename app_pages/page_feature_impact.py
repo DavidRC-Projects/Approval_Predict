@@ -12,19 +12,21 @@ from src.utils import discretize_for_parallel
 
 
 def plot_numerical(df, vars_to_study, target_var):
+    """
+    Create histograms and boxplots to analyse numerical feature behaviour
+    and compare distributions between approved and rejected applicants.
+    """
     sns.set_style("whitegrid")
 
     for col in vars_to_study:
         fig, axes = plt.subplots(1, 2, figsize=(14, 4))
 
-        # Histogram
         sns.histplot(
             data=df, x=col, hue=target_var, kde=True, element="step",
             palette="Set1", ax=axes[0]
         )
         axes[0].set_title(f"{col} distribution by {target_var}")
 
-        # Boxplot
         sns.boxplot(
             data=df, x=target_var, y=col,
             palette="Set2", ax=axes[1]
@@ -36,6 +38,10 @@ def plot_numerical(df, vars_to_study, target_var):
 
 
 def page_feature_impact_body():
+    """
+    Display dataset overview, feature insights, and visual analyses
+    (numerical plots, heatmap, and parallel categories) for loan approval patterns.
+    """
     st.title("Feature Impact Analysis")
 
     raw_dataset = load_loan_approval_data()
