@@ -1,11 +1,6 @@
 .vscode/
 .venv/
 venv/
-outputs/**
-!outputs/ml_pipeline/approval_prediction/v2/classification_pipeline.pkl
-!outputs/ml_pipeline/approval_prediction/v2/X_test.csv
-!outputs/ml_pipeline/approval_prediction/v2/y_test.csv
-!outputs/ml_pipeline/approval_prediction/v2/features_importance.png
 inputs/datasets/
 datasets/
 data/
