@@ -212,3 +212,7 @@ Added the code ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} \
 Hyperparameter testing:
 
 
+
+
+https://docs.streamlit.io/develop/api-reference/status for markdown for error handling.
+https://docs.streamlit.io/develop/api-reference/data/st.column_config/st.column_config.progresscolumn?utm_source=streamlit. for progress column.

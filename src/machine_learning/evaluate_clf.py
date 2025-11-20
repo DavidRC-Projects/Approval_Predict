@@ -8,7 +8,7 @@ def confusion_matrix_and_report(X, y, pipeline, label_map):
     prediction = pipeline.predict(X)
 
     st.write('#### Confusion Matrix')
-    st.code(pd.DataFrame(confusion_matrix(y_true=prediction, y_pred=y),
+    st.code(pd.DataFrame(confusion_matrix(y_true=y, y_pred=prediction),
                          columns=[["Actual " + sub for sub in label_map]],
                          index=[["Prediction " + sub for sub in label_map]]
                          ))
