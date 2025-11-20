@@ -1,9 +1,6 @@
 .vscode/
 .venv/
 venv/
-inputs/datasets/
-datasets/
-data/
 __pycache__/
 *.pyc
 jupyter_notebooks/
