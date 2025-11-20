@@ -6,21 +6,33 @@ from src.data_management import load_pkl_file
 from src.machine_learning.evaluate_clf import clf_performance
 
 def get_base_path():
+    """
+    Return the base directory path for loading model outputs for version (v2).
+    """
     version = "v2"
     return f"outputs/ml_pipeline/approval_prediction/{version}"
 
 
 def load_pipeline():
+    """
+    Load and return the trained classification pipeline.
+    """
     return load_pkl_file(
         "outputs/ml_pipeline/approval_prediction/v2/classification_pipeline.pkl"
     )
 
 
 def load_feature_importance():
+    """
+    Load and return the saved feature importance image for display.
+    """
     return plt.imread(f"{get_base_path()}/features_importance.png")
 
 
 def load_data_splits():
+    """
+    Load the stored train/test feature matrices for evaluation.
+    """
     base = get_base_path()
     X_train = pd.read_csv(f"{base}/X_train.csv")
     X_test  = pd.read_csv(f"{base}/X_test.csv")
@@ -30,6 +42,13 @@ def load_data_splits():
 
 
 def page_final_model_body():
+    """
+    Render the Final Model page, including:
+    - Feature importance explanation
+    - Feature importance plot
+    - Train vs test evaluation results
+    - Confusion matrices and classification reports
+    """
     st.title("Final ML Model")
 
     st.subheader("Feature Importance Summary")

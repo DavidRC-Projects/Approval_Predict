@@ -2,6 +2,11 @@ import streamlit as st
 
 
 def page_project_findings_body():
+    """
+    Render the Project Hypotheses and Findings page.
+    This page explains the business requirements, outlines the initial project 
+    hypotheses, and presents key model performance metrics (precision and recall).
+    """
     st.write("### Project Hypotheses and Findings")
 
     st.info(

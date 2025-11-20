@@ -2,6 +2,13 @@ import streamlit as st
 
 
 def page_summary_body():
+    """
+    Render the Quick Project Summary page.
+    Gives an overview of the dataset and project context.
+    Definitions of key terminology used throughout the analysis.
+    A link to the full project README for additional documentation.
+    A summary of the business requirements.
+    """
     st.write("### Quick Project Summary")
 
     st.info(
