@@ -1,7 +1,8 @@
-import streamlit as st
-import pandas as pd
 import joblib
 
+import numpy as np
+import pandas as pd
+import streamlit as st
 
 @st.cache_data
 def load_loan_approval_data():

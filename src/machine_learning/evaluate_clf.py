@@ -8,13 +8,19 @@ def confusion_matrix_and_report(X, y, pipeline, label_map):
     prediction = pipeline.predict(X)
 
     st.write('#### Confusion Matrix')
-    st.code(pd.DataFrame(confusion_matrix(y_true=y, y_pred=prediction),
-                         columns=[["Actual " + sub for sub in label_map]],
-                         index=[["Prediction " + sub for sub in label_map]]
-                         ))
+    st.code(
+        pd.DataFrame(
+            confusion_matrix(y_true=y, y_pred=prediction),
+            columns=[["Actual " + sub for sub in label_map]],
+            index=[["Prediction " + sub for sub in label_map]]
+        )
+    )
 
     st.write('#### Classification Report')
-    st.code(classification_report(y, prediction, target_names=label_map), "\n")
+    st.code(
+        classification_report(y, prediction, target_names=label_map),
+        "\n"
+    )
 
 
 def clf_performance(X_train, y_train, X_test, y_test, pipeline, label_map):

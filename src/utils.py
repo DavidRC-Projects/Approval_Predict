@@ -21,7 +21,9 @@ def engineer_features(df):
       - ensure target is numeric
       - create the loan_to_income ratio
     """
-    engineered = df.drop(columns=[col for col in DROP_COLUMNS if col in df.columns]).copy()
+    engineered = df.drop(
+        columns=[col for col in DROP_COLUMNS if col in df.columns]
+    ).copy()
     if TARGET_COLUMN in engineered.columns:
         engineered[TARGET_COLUMN] = engineered[TARGET_COLUMN].astype(int)
     engineered["loan_to_income"] = engineered["loan_amount"] / engineered["income"]
