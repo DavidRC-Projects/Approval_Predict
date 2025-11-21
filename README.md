@@ -115,6 +115,56 @@ Our ideal outcome is to provide our loan officers with reliable insight into pro
 
 The model output will be a flag, that indicaties if an applicant will be approved or not and the associated probability of approval.
 
+**The training data to fit the model comes from:** [Kaggle](https://www.kaggle.com/datasets/anishdevedward/loan-approval-dataset/data?select=loan_approval.csv)
+
+**The dataset contains:** 2,000 observations and 8 attributes.
+
+**Target:** `loan_approved`; **Features:** `credit_score`, `income`, `loan_amount`, `years_employed`, `loan_to_income` (derived feature).
+
+**Note:** The `points` feature was excluded from the final model despite its perfect correlation, as it creates unrealistic predictions and doesn't provide actionable guidance to applicants.
+
+[Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
+
+## Epics and User Stories
+
+The project was split into 5 Epics based upon the Data Visualisation and Machine Learning tasks.
+
+### Epic - Information Gathering and Data Collection
+
+- **User Story** - As a data analyst, I can import the dataset from Kaggle so that I can save the data in a local directory.
+- **User Story** - As a data analyst, I can load a saved dataset so that I can analyse the data to gain insights.
+
+### Epic - Data Visualisation, Cleaning, and Preparation
+
+- **User Story** - As a data scientist, I can visualise the dataset so that I can interpret which attributes correlate most closely with loan approval (Business Requirement 1).
+- **User Story** - As a data analyst, I can evaluate the dataset to determine what data cleaning tasks need to be carried out.
+- **User Story** - As a data analyst, I can identify and remove redundant features that have no predictive value.
+- **User Story** - As a data analyst, I can determine whether the target requires balancing in order to ensure the ML is not fed imbalanced data.
+- **User Story** - As a data scientist, I can carry out feature engineering to create the loan-to-income ratio feature for the ML model.
+
+### Epic - Model Training, Optimisation and Validation
+
+- **User Story** - As a data scientist, I can split the data into a train and test set to prepare it for the ML model.
+- **User Story** - As a data engineer, I can fit a ML pipeline with all the data to prepare the ML model for deployment.
+- **User Story** - As a data engineer, I can determine the best algorithm for predicting loan approval to use in the ML model (Business Requirement 2).
+- **User Story** - As a data engineer, I can carry out hyperparameter optimisation to ensure the ML model gives the best results (Business Requirement 2).
+- **User Story** - As a data scientist, I can determine the best features from the ML pipeline to determine whether the ML model can be optimised further (Business Requirement 2).
+- **User Story** - As a data scientist, I can evaluate the ML model's performance to determine whether it can successfully predict loan approval (Business Requirement 2).
+
+### Epic - Dashboard Planning, Designing, and Development
+
+- **User Story** - As a non-technical user, I can view a project summary that describes the project, dataset and business requirements to understand the project at a glance.
+- **User Story** - As a non-technical user, I can view the project hypotheses and validations to determine what the project was trying to achieve and whether it was successful.
+- **User Story** - As a non-technical user, I can enter unseen data into the model and receive a prediction (Business Requirement 2).
+- **User Story** - As a technical user, I can view the correlation analysis to see how the outcomes were reached (Business Requirement 1).
+- **User Story** - As a technical user, I can view all the data to understand the model performance (Business Requirement 2).
+- **User Story** - As a non-technical user, I can view the project conclusions to see whether the model was successful and if the business requirements were met.
+
+### Epic - Dashboard Deployment and Release
+
+- **User Story** - As a user, I can view the project dashboard on a live deployed website (Heroku).
+- **User Story** - As a technical user, I can follow instructions in the readme to fork the repository and deploy the project for myself.
+
 ## Dashboard Design
 
 Page 1: Quick Project Summary
@@ -165,7 +215,7 @@ Test: 87% recall, 86% precision.
 
 
 ## Unfixed Bugs
-* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable to consider, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
+* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used.
 Added the code ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} \
     && rm {DestinationFolder}/*.zip \
     && rm kaggle.json
