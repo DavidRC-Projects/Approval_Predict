@@ -168,50 +168,50 @@ The project was split into 5 Epics based upon the Data Visualisation and Machine
 ## Dashboard Design
 
 Page 1: Quick Project Summary
-Quick summary of the Approval Prediction project.
-Description of the dataset.
-State the business requirements:
-Build a model to predict loan approval with 80%+ precision and recall.
-Provide actionable insights to help applicants improve their approval odds.
+- Quick summary of the Approval Prediction project.
+- Description of the datasetand its source.
+- State the business requirements:
+- Build a model to predict loan approval with 80%+ precision and recall.
+- Provide actionable insights to help applicants improve their approval odds.
 
-Page 2: Feature Impact Study (Legacy Model with Points)
-Business requirement addressed: Analyse the legacy model that uses the points feature.
-Before analysis we expected this page to highlight the perfect accuracy achieved with points.
-After analysis, the page shows:
-Business requirement 1 results using the points-driven model.
-Checkbox: Explore dataset shape and preview records.
-Highlight that points has 100% feature importance and explain why this is problematic.
-Checkbox: Plots showing approval split by points threshold.
-Checkbox: Parallel plot comparing points vs other features.
+Page 2: Feature Impact Study
+- Business requirement addressed: Analyse a model that uses the points feature.
+- Before analysis we expected this page to highlight a high level of accuracy achieved with points.
+- After analysis, the page shows:
+- Business requirement 1 results using the points-driven model.
+- Checkbox: Explore dataset shape and preview records.
+- Highlight that points has 100% feature importance.
+- Checkbox: Plots showing approval split by points threshold.
+- Checkbox: Parallel plot comparing points vs other features.
 
 Page 3: Approval Predictor (Without Points)
-Business requirement addressed: Provide a reliable prediction tool using applicant features only.
-Input widgets for applicant profile:
-Credit score, income, loan amount, years employed and loan_to_income.
-“Run Predictive Analysis” button:
-Sends values to the optimised LogisticRegression pipeline.
-Predicts approval outcome and associated probability.
-Provides tailored guidance based on feature contributions (e.g., “Increase credit score above X”).
+- Business requirement addressed: Provide a reliable prediction tool using applicant features only.
+- Input widgets for applicant profile:
+- Credit score, income, loan amount and years employed.
+- “Run Predictive Analysis” button:
+- Sends values to the optimised LogisticRegression pipeline.
+- Predicts approval outcome and associated probability.
+- Provides tailored guidance based on feature contributions (e.g., “Increase credit score above X”).
+- Provides the loan_to_income value and provides a risk band.
 
 Page 4: Project Hypotheses and Findings
-Before analysis, we listed hypotheses to validate. After analysis, we can report:
-Applicants with higher points always get approved.
-Confirmed: points feature dominates approval decisions.
-Approval probability is predictable using others features and removing points.
-Confirmed in Notebook 06: credit_score, loan_to_income, and income drive final predictions.
-Confirmed: Final model gives 87% recall / 86% precision with actionable insights.
+- Before analysis, we listed hypotheses to validate. After analysis, we can report:
+- Applicants with higher points always get approved.
+- Confirmed: points feature dominates approval decisions.
+- Approval probability is predictable using others features and removing points.
+- Confirmed in Notebook 06: credit_score, loan_to_income, and income drive final predictions.
+- Confirmed: Final model gives 87% recall / 86% precision with actionable insights.
 
 Page 5: Final ML Model (Without Points)
-Key takeaways after training the final pipeline (Notebook 06).
-ML pipeline steps:
-BoxCox transformation (loan_to_income only).
-Robust scaling.
-LogisticRegression (C=0.1, penalty=l2, class_weight=None).
-Feature importance chart showing:
-credit_score, loan_to_income, income, years_employed, loan_amount.
-Pipeline performance metrics:
-Train: ~92% precision/recall.
-Test: 87% recall, 86% precision.
+- Key takeaways after training the final pipeline (Notebook 06).
+- ML pipeline steps:
+- BoxCox transformation (loan_to_income only).
+- Robust scaling.
+- LogisticRegression (C=0.1, penalty=l2, class_weight=None).
+- Feature importance chart showing:
+- credit_score, loan_to_income, income, years_employed, loan_amount.
+- Pipeline performance metrics:
+- Train and test sets.
 
 
 ## Unfixed Bugs
