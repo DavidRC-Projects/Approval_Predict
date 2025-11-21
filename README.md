@@ -1,16 +1,22 @@
-## Cloud IDE Reminders
+# Approval Predictor - A Predictive Classification Model for Determining Loan Approval Outcomes
 
-To log into the Heroku toolbelt CLI:
+Approval Predictor is a machine-learning (ML) project using a publicly available dataset to determine whether a ML pipeline could be built to predict whether a loan application will be approved or rejected. This was achieved by using a classification task, using the `loan_approved` attribute from the dataset as the target and the remaining attributes as features.
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## Table of Contents
 
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
+- [Dataset Content](#dataset-content)
+- [Business Requirements](#business-requirements)
+- [Hypothesis](#hypothesis)
+- [Mapping Business Requirements to Data Visualisation and ML Tasks](#mapping-business-requirements-to-data-visualisation-and-ml-tasks)
+- [ML Business Case](#ml-business-case)
+- [Epics and User Stories](#epics-and-user-stories)
+- [Dashboard Design](#dashboard-design)
+- [Technologies Used](#technologies-used)
+- [Testing](#testing)
+- [Unfixed Bugs](#unfixed-bugs)
+- [Deployment](#deployment)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
 
 ## Dataset Content
 
@@ -36,13 +42,13 @@ df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
 
 ## Project Terms & Jargon
 
-- An **applicant** is a person who has submitted a loan application to the financial institution.
-- An **approved loan** is a loan application that has been accepted by the institution and will receive funding.
-- A **rejected loan** (or rejected application) is a loan application that has been denied by the institution.
-- **Credit score** is a numerical representation of an applicant's creditworthiness.
-- **Points** (mortgage points or discount points) are fees paid upfront to reduce the interest rate on a loan. One point equals 1% of the loan amount.
-- **Years employed** refers to the length of time an applicant has been with their current employer, which is used to assess employment stability.
-- **Loan-to-income ratio** (LTI) compares the loan amount to the applicant's income.
+- An **applicant**:  Person who has submitted a loan application to the financial institution.
+- An **approved loan**: Loan application that has been accepted and will receive funding.
+- A **rejected loan**: Loan application that has been rejected and has been denied for funding.
+- **Credit score**: Numerical representation of an applicant's creditworthiness.
+- **Points**: Mortgage points are fees paid upfront to reduce the interest rate on a loan. One point equals 1% of the loan amount.
+- **Years employed**: The length of time an applicant has been with their current employer, which is used to assess employment stability.
+- **Loan-to-income ratio(LTI)**: Compares the loan amount to the applicant's income. This helps assess risk and affordability.
 
 
 
@@ -50,47 +56,46 @@ df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
 
 The client is a fictitious financial institution that processes a large number of loan applications daily. Manual review of loan applications is time-consuming and resource-intensive. The institution wants to understand what factors contribute most to loan approval decisions and whether loan approvals can be accurately predicted to streamline operations and improve risk assessment.
 
-1. The client is interested in determining which applicant variables are most strongly correlated with the loan approval outcome. They want a ranked list of variables to be provided based on their relevance and impact.
-2. The client aims to offer a guide for potential applicants by identifying the influential factors that contribute to loan approval. These insights will be used to recommend specific improvements for applicants and guide them to increase their chances of having a loan approved.
+**Business Requirement 1** - The client is interested in determining which applicant variables are most strongly correlated with the loan approval outcome. They want a ranked list of variables to be provided based on their relevance and impact.
 
-
+**Business Requirement 2** - The client aims to offer a guide for potential applicants by identifying the influential factors that contribute to loan approval. These insights will be used to recommend specific improvements for applicants and guide them to increase their chances of having a loan approved.
 
 ## Hypothesis and how to validate?
 
 The client wants to know whether the data supports the following hypotheses:
 
 - **Hypothesis 1**: Applicants with higher credit scores tend to have higher approval rates.
-  - A correlation study can help in this investigation
+- Validation: A correlation analysis that indicates a strong relationship between credit score and the target loan_approved.
 - **Hypothesis 2**: Applicants who have been employed longer have higher approval rates than those with shorter employment history.
-  - A correlation study can help in this investigation
+- Validation: A correlation study that measures the relationship between years employed and loan approval outcomes.
 - **Hypothesis 3**: Applications with higher loan amounts relative to income (LTI ratio) have lower approval rates.
-  - A correlation study can help in this investigation
-  - Create loan-to-income ratio (LTI) = loan_amount / income as a derived feature
+- Validation: Analysis of the loan-to-income ratio feature, created as a new feature (loan_amount / income), and its correlation with approval outcomes.
 
 - **Null Hypothesis**
 -There is no significant relationship between applicant features and loan approval outcomes. Approval decisions cannot be predicted from these features due to insufficient data.
 
+[Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
 
-## The rationale to map the business requirements to the Data Visualizations and ML tasks
-- **Business Requirement 1:** Data Visualization and Correlation study
-	- We will inspect the data related to the applicant base.
-	- We will conduct a correlation study (Pearson and Spearman) to understand better how the variables are correlated to loan approval.
-	- We will plot the main variables against loan approval to visualize insights.
-	- We will analyse approval patterns by income ranges, credit score ranges, loan amounts, employment history, and loan-to-income ratios.
+## Mapping Business Requirements to Data Visualisation and ML Tasks
 
-- **Business Requirement 2:** Testing and Validating Hypotheses
-	- We want to test whether higher credit scores are associated with higher approval rates (Hypothesis 1).
-	- We want to test whether longer employment history is associated with higher approval rates (Hypothesis 2).
-	- We want to test whether higher loan-to-income ratios are associated with lower approval rates (Hypothesis 3).
-	- We will use correlation studies and statistical tests to validate these hypotheses.
+### Business Requirement 1: Data Visualisation and Correlation study
 
+- We will inspect the data related to the applicant base.
+- We will conduct a correlation study (Pearson and Spearman) to understand better how the variables are correlated to loan approval.
+- We will plot the main variables against loan approval to visualise insights.
+- We will analyse approval patterns by income ranges, point ranges, credit score ranges, loan amounts, employment history, and loan-to-income ratios.
+- This will be carried out during the Data Visualisation, Cleaning, and Preparation.
 
-- **Business Requirement 3:** Classification and Risk Assessment
-	- We want to predict if an applicant will be approved or not. We want to build a binary classifier.
-	- We want to predict the probability of approval for an applicant to assess risk level.
-	- We want to identify which features are most important for approval decisions.
-	- We want to understand approval patterns to guide applicants on improving their chances of approval.
+### Business Requirement 2: Classification Model
 
+- We need to predict whether a loan application will be approved or not.
+- Therefore we need to build a binary classification model.
+- A machine learning pipeline will be able to map the relationships between the features and target.
+- Hyperparameter optimisation will give us the best chance at a highly accurate prediction.
+- The model will provide actionable guidance to applicants on how to improve their approval odds.
+- This will be carried out during the Model Training and Optimisation.
+
+[Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
 
 ## ML Business Case
 
@@ -216,3 +221,4 @@ Hyperparameter testing:
 
 https://docs.streamlit.io/develop/api-reference/status for markdown for error handling.
 https://docs.streamlit.io/develop/api-reference/data/st.column_config/st.column_config.progresscolumn?utm_source=streamlit. for progress column.
+
