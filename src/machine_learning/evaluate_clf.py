@@ -4,7 +4,10 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 
 def confusion_matrix_and_report(X, y, pipeline, label_map):
-    """Render confusion matrix and classification report for a dataset split."""
+    """
+    Render confusion matrix and classification report
+    for a dataset split.
+    """
     prediction = pipeline.predict(X)
 
     st.write('#### Confusion Matrix')

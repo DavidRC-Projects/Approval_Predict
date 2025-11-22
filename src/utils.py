@@ -26,7 +26,9 @@ def engineer_features(df):
     ).copy()
     if TARGET_COLUMN in engineered.columns:
         engineered[TARGET_COLUMN] = engineered[TARGET_COLUMN].astype(int)
-    engineered["loan_to_income"] = engineered["loan_amount"] / engineered["income"]
+    engineered["loan_to_income"] = (
+        engineered["loan_amount"] / engineered["income"]
+    )
     return engineered
 
 
@@ -43,7 +45,8 @@ def discretize_for_parallel(df):
         "credit_score": credit_map,
         "points": points_map,
         "loan_to_income": lti_map
-    })
+        }
+    )
     df_disc = disc.fit_transform(df.copy())
 
     def make_label_map(binner_dict, variable):
@@ -62,12 +65,17 @@ def discretize_for_parallel(df):
 
     for var in ["credit_score", "points", "loan_to_income"]:
         if var in disc.binner_dict_:
-            df_disc[var] = df_disc[var].replace(make_label_map(disc.binner_dict_, var))
+            df_disc[var] = df_disc[var].replace(
+                make_label_map(disc.binner_dict_, var)
+            )
 
     for col in ["credit_score", "points", "loan_to_income"]:
         df_disc[col] = df_disc[col].astype(str)
 
-    if "loan_approved" in df_disc.columns and df_disc["loan_approved"].dtype != int:
+    if (
+        "loan_approved" in df_disc.columns
+        and df_disc["loan_approved"].dtype != int
+    ):
         try:
             df_disc["loan_approved"] = df_disc["loan_approved"].astype(int)
         except Exception:

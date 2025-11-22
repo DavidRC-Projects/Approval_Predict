@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
+
 @st.cache_data
 def load_loan_approval_data():
     """Load the loan approval dataset with error handling."""
@@ -13,8 +14,9 @@ def load_loan_approval_data():
         df = pd.read_csv(file_path)
 
         if df.empty:
-            st.error("Dataset file is empty. Please check the data collection process.")
-            st.stop()
+            "Dataset file is empty. Please check the data collection "
+            "process."
+        st.stop()
 
         return df
 

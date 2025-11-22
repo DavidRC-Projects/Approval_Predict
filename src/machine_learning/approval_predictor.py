@@ -1,11 +1,19 @@
 import streamlit as st
 
 
-APPROVAL_FEATURES = ["loan_to_income", "credit_score", "years_employed", "loan_amount", "income"]
+APPROVAL_FEATURES = [
+    "loan_to_income",
+    "credit_score",
+    "years_employed",
+    "loan_amount",
+    "income",
+]
+
 
 def predict_loan_approval(X_live, pipeline):
     """
-    Filter live applicant data to the production features and return the approval prediction.
+    Filter live applicant data to the production features and
+    return the approval prediction.
     """
     X_live = X_live.filter(APPROVAL_FEATURES)
     prediction = pipeline.predict(X_live)
