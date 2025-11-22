@@ -5,6 +5,7 @@ import pandas as pd
 from src.data_management import load_pkl_file
 from src.machine_learning.evaluate_clf import clf_performance
 
+
 def get_base_path():
     """
     Return the base directory path for loading model outputs for version (v2).
@@ -18,7 +19,8 @@ def load_pipeline():
     Load and return the trained classification pipeline.
     """
     return load_pkl_file(
-        "outputs/ml_pipeline/approval_prediction/v2/classification_pipeline.pkl"
+        "outputs/ml_pipeline/approval_prediction/v2/"
+        "classification_pipeline.pkl"
     )
 
 
@@ -35,9 +37,9 @@ def load_data_splits():
     """
     base = get_base_path()
     X_train = pd.read_csv(f"{base}/X_train.csv")
-    X_test  = pd.read_csv(f"{base}/X_test.csv")
+    X_test = pd.read_csv(f"{base}/X_test.csv")
     y_train = pd.read_csv(f"{base}/y_train.csv")
-    y_test  = pd.read_csv(f"{base}/y_test.csv")
+    y_test = pd.read_csv(f"{base}/y_test.csv")
     return X_train, X_test, y_train, y_test
 
 
@@ -54,23 +56,27 @@ def page_final_model_body():
     st.subheader("Feature Importance Summary")
 
     st.info(
-    """
-    ### What the Feature Importance Plot Tells Us
+        """
+        ### What the Feature Importance Plot Tells Us
 
-    - **Credit Score** is the dominant predictor in the model.  
+        - **Credit Score** is the dominant predictor in the model.
 
-    - **Loan-to-Income Ratio** is the second strongest influence.  
-      Applicants with more affordable loans relative to income are more likely to be approved.
+        - **Loan-to-Income Ratio** is the second strongest influence.
+          Applicants with more affordable loans relative to income
+          are more likely to be approved.
 
-    - **Income** and **Years Employed** add moderate predictive value.  
-      They improve the model but do not drive decisions on their own.
+        - **Income** and **Years Employed** add moderate predictive value.
+          They improve the model but do not drive decisions on their own.
 
-    - **Loan Amount** has minimal impact, especially when credit score is high or low.
+        - **Loan Amount** has minimal impact, especially when
+          credit score is high or low.
 
-    **In summary:**  
-    Loan approval is primarily driven by **credit score** and **affordability (loan-to-income)**.
-    Other features help fine-tune predictions but do not strongly shift outcomes.
-    """
+        **In summary:**
+        Loan approval is primarily driven by **credit score**
+        and **affordability (loan-to-income)**.
+        Other features help fine-tune predictions but do not
+        strongly shift outcomes.
+        """
     )
 
     pipeline = load_pipeline()
@@ -85,28 +91,28 @@ def page_final_model_body():
     st.subheader("Model Performance Overview")
 
     st.info(
-    """
-    ### Train vs Test Performance
+        """
+        ### Train vs Test Performance
 
-    **Train Accuracy:** 92%  
-    **Test Accuracy:** 88%
+        **Train Accuracy:** 92%
+        **Test Accuracy:** 88%
 
-    The model performs very strongly on both datasets, indicating:
-    - No signs of overfitting (train and test scores are close)
-    - Good generalisation to unseen applicants
+        The model performs strongly on both datasets, indicating:
+        - No signs of overfitting (scores are close)
+        - Good generalisation to unseen applicants
 
-    ### Train Set Observations
-    - Very high precision (91%) and recall (93%) for the *approved* class  
-    - This indicates the model will most of the time identify approved applicants correctly 
+        ### Train Set Observations
+        - Precision (91%) and recall (93%) for *approved* are high.
+        - The model correctly identifies approved applicants most of the time.
 
-    ### Test Set Observations
-    - Precision (86%) and recall (88%) for *approved* remain strong  
-    - Only a small drop from the train set 
-    - Confirms the model is reliable and not overly tuned to the training data
+        ### Test Set Observations
+        - Precision (86%) and recall (88%) remain strong.
+        - Only a small drop from the train set.
 
-    **Conclusion:**  
-    The model provides robust predictions with strong precision and recall.
-    """
+        **Conclusion:**
+        The model provides robust predictions with strong
+        precision and recall.
+        """
     )
 
     label_map = ["Rejected", "Approved"]
@@ -117,5 +123,5 @@ def page_final_model_body():
         X_test=X_test,
         y_test=y_test,
         pipeline=pipeline,
-        label_map=label_map
-    )
+        label_map=label_map,
+        )

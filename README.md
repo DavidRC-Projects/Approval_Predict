@@ -213,9 +213,50 @@ Page 5: Final ML Model (Without Points)
 - Pipeline performance metrics:
 - Train and test sets.
 
+## Technologies Used
+
+The technologies used throughout the development are listed below:
+
+### Languages
+- **Python** - Primary programming language for data analysis and machine learning
+
+### Python Packages
+- **Pandas** - Open source library for data manipulation and analysis
+- **NumPy** - 
+- **YData Profiling** - 
+- **Matplotlib** - 
+- **Seaborn** - 
+- **Plotly** - 
+- **Feature-engine** -
+- **ppscore** - 
+- **scikit-learn** - 
+
+### Other Technologies
+- **Git** - For version control
+- **GitHub** - Code repository
+- **Heroku** - For application deployment
+- **Jupyter Notebooks** - For exploratory data analysis and model development
+
+[Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
+
+## Testing
+
+### Manual Testing
+
+#### User Story Testing
+
+Dashboard was manually tested using user stories as a basis for determining success.
+
+### Validation Testing
+
+I used the [CI Python Linter](https://pep8ci.herokuapp.com/#) and followed the [PEP8 guidelines](https://peps.python.org/pep-0008/) to validate my code.
+
+As a result of the linting process, I made the following adjustments:
+
 
 ## Unfixed Bugs
 * You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used.
+
 Added the code ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} \
     && rm {DestinationFolder}/*.zip \
     && rm kaggle.json
@@ -224,7 +265,30 @@ Added the code ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} \
 	ValueError: Could not interpret value `loan_to_income` for `x`. An entry with this name does not appear in `data`.
 	Fixed the plot numerical function by adding df['loan_to_income'] = df['loan_amount'] / df['income'] as when plot_numerical was called it was unable to find the loan_to_income variable. This code had already been noted prior to the function. 
 
+	NameError: name 'load_pkl_file' is not defined
+load_pkl_file was undefined because src/data_management.py tried to use the Streamlit cache decorator without setting it up first, which caused the module import to fail and the function never got defined. I added a tiny shim:
 
+Fix:from data_management import load_loan_approval_data, load_pkl_file
+
+However src folder was missed
+
+ModuleNotFoundError: No module named 'data_management'
+Traceback:
+File "/home/cistudent/.local/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+File "/home/cistudent/.local/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+File "/workspaces/Approval_Predict/apps.py", line 6, in <module>
+    from app_pages.page_approval_predictor import page_approval_predictor_body
+File "/workspaces/Approval_Predict/app_pages/page_approval_predictor.py", line 4, in <module>
+    from data_management import load_loan_approval_data, load_pkl_file
+
+From src.data_management import load_loan_approval_data, load_pkl_file
+
+set_page_config() must be the first Streamlit command
+
+This was fixed by st.subheader("Correlation analysis") not being inside the function due to an indentation error.
 
 
 ## Deployment

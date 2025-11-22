@@ -18,34 +18,54 @@ def page_approval_predictor_body():
 
     version = "v2"
     pipeline = load_pkl_file(
-        f"outputs/ml_pipeline/approval_prediction/{version}/classification_pipeline.pkl"
+        f"outputs/ml_pipeline/approval_prediction/"
+        f"{version}/classification_pipeline.pkl"
     )
 
     st.info(
-        "#### **Business Requirement 2**: Applicant Guidance & Classification\n\n"
-        "* Predict if an applicant will be approved using a Logistic Regression pipeline trained \n"
-        "* Success metrics: ≥80% recall and ≥80% precision on the approved class (train & test).\n"
-        "* Provide transparent feedback to help applicants improve their approval odds."
+        "#### **Business Requirement 2**: Applicant Guidance\n\n"
+        "* Predict if an applicant will be approved using a Logistic "
+        "Regression pipeline trained.\n"
+        "* Success metrics: ≥80% recall and ≥80% precision on the "
+        "approved class (train & test).\n"
+        "* Provide transparent feedback to help applicants improve "
+        "their approval odds."
     )
 
     dataset = load_dataset()
     ranges = {
-        "income": (int(dataset["income"].min()), int(dataset["income"].max())),
-        "loan_amount": (int(dataset["loan_amount"].min()), int(dataset["loan_amount"].max())),
-        "credit_score": (int(dataset["credit_score"].min()), int(dataset["credit_score"].max())),
-        "years_employed": (int(dataset["years_employed"].min()), int(dataset["years_employed"].max())),
+        "income": (
+            int(dataset["income"].min()),
+            int(dataset["income"].max()),
+        ),
+        "loan_amount": (
+            int(dataset["loan_amount"].min()),
+            int(dataset["loan_amount"].max()),
+        ),
+        "credit_score": (
+            int(dataset["credit_score"].min()),
+            int(dataset["credit_score"].max()),
+        ),
+        "years_employed": (
+            int(dataset["years_employed"].min()),
+            int(dataset["years_employed"].max()),
+        ),
     }
     st.markdown(
-    f"""
-        Please use the input ranges (based on training data). Adjust the values below to see how they impact loan approval.
-        - **Income:** `${ranges['income'][0]:,} — ${ranges['income'][1]:,}` 
-        - **Loan amount:** `${ranges['loan_amount'][0]:,} — ${ranges['loan_amount'][1]:,}` 
-        - **Credit score:** `{ranges['credit_score'][0]} — {ranges['credit_score'][1]}` 
-        - **Years employed:** `{ranges['years_employed'][0]} — {ranges['years_employed'][1]} years`
-    """
-)
+        (
+            "Please use the input ranges (based on training data). Adjust the "
+            "values below to see how they impact loan approval.\n"
+            f"- **Income:** `${ranges['income'][0]:,} — "
+            f"${ranges['income'][1]:,}`\n"
+            f"- **Loan amount:** `${ranges['loan_amount'][0]:,} — "
+            f"${ranges['loan_amount'][1]:,}`\n"
+            f"- **Credit score:** `{ranges['credit_score'][0]} — "
+            f"{ranges['credit_score'][1]}`\n"
+            f"- **Years employed:** `{ranges['years_employed'][0]} — "
+            f"{ranges['years_employed'][1]} years`"
+        )
+    )
     X_live = draw_input_widgets(dataset)
-
 
     if st.button("Run Predictive Analysis"):
         prediction = predict_loan_approval(X_live, pipeline)
@@ -68,7 +88,8 @@ def load_dataset():
 def draw_input_widgets(df):
     """
     Builds Streamlit input widgets.
-    Returns a single-row DataFrame containing all user inputs and calculated LTI.
+    Returns a single-row DataFrame containing all user inputs
+    and calculated LTI.
     """
     X_live = pd.DataFrame(index=[0])
 
@@ -133,7 +154,7 @@ def display_loan_to_income(X_live):
 
     st.metric(
         label="Estimated loan-to-income ratio",
-        value=f"{lti_value:.2f}"
+        value=f"{lti_value:.2f}",
     )
 
 
@@ -143,9 +164,10 @@ def display_loan_to_income_summary(X_live, dataset):
     using quartile-based risk bands.
     The Q1 (0-25%) gives a low-risk affordability band.
     The Q2 (25-50%) gives a below-average risk band.
-    The Q3 (50-75%) gives a moderate risk band.  
+    The Q3 (50-75%) gives a moderate risk band.
     Above Q3 (75%) gives a high risk band.
-    This then provies an explanation of affordability risk and improvement tips.
+    This then provies an explanation of affordability
+    risk and improvement tips.
     """
     lti = float(X_live.at[0, "loan_to_income"])
 
@@ -156,30 +178,38 @@ def display_loan_to_income_summary(X_live, dataset):
     if lti <= q1:
         band = "Low Risk"
         msg = (
-            "Your loan-to-income ratio is in the **lowest 25%** of applicants.\n"
-            "This indicates **excellent affordability** and strongly supports approval."
+            "Your loan-to-income ratio is in the **lowest 25%** "
+            "of applicants.\n"
+            "This indicates **excellent affordability** and strongly "
+            "supports approval."
         )
 
     elif lti <= q2:
         band = "Below Average Risk"
         msg = (
-            "Your loan-to-income ratio is below the **median applicant**.\n"
-            "This is a **favourable affordability range**, improving approval likelihood."
+            "Your loan-to-income ratio is below the **median "
+            "applicant**.\n"
+            "This is a **favourable affordability range**, "
+            "improving approval likelihood."
         )
 
     elif lti <= q3:
         band = "Moderate Risk"
         msg = (
             "Your ratio is in the **upper-middle range**.\n"
-            "You may still be approved, but i'd recommend lowering your loan amount or increasing income to improve your approval chances."
+            "You may still be approved, but I'd recommend lowering "
+            "your loan amount or increasing income."
         )
 
     else:
         band = "High Risk"
         msg = (
-            "Your loan-to-income ratio is in the **highest 25%** of applicants.\n"
-            "This signals **potential affordability concerns** and may significantly reduce approval chances.\n"
-            "Reducing the loan amount or increasing income would improve this"
+            "Your loan-to-income ratio is in the **highest 25%** "
+            "of applicants.\n"
+            "This signals **potential affordability concerns** and "
+            "may significantly reduce approval chances.\n"
+            "Reducing the loan amount or increasing income would "
+            "improve this."
         )
 
     st.metric(
@@ -192,4 +222,3 @@ def display_loan_to_income_summary(X_live, dataset):
         f"**Your LTI:** {lti:.2f}\n\n"
         f"{msg}"
     )
-
