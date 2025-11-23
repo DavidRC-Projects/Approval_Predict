@@ -423,14 +423,14 @@ To install all dependencies needed for full local development and notebook execu
 
 ## Credits 
 
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism. 
-* You can break the credits section up into Content and Media, depending on what you have included in your project. 
+https://docs.streamlit.io/develop/api-reference/status for markdown for error handling.
+https://docs.streamlit.io/develop/api-reference/data/st.column_config/st.column_config.progresscolumn?utm_source=streamlit. for progress column.
+
+https://www.geeksforgeeks.org/machine-learning/standardscaler-minmaxscaler-and-robustscaler-techniques-ml/ - robust scaling
 
 ### Content 
 
-- The text for the Home page was taken from Wikipedia Article A
-- Instructions on how to implement form validation on the Sign-Up page were taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+Canvas - Logo design, README banner image.
 
 ### Media
 
@@ -439,17 +439,7 @@ To install all dependencies needed for full local development and notebook execu
 
 
 
-## Acknowledgements (optional)
-* Thank the people who provided support through this project.
-
-
-
-Hyperparameter testing:
-
-
-
-
-https://docs.streamlit.io/develop/api-reference/status for markdown for error handling.
-https://docs.streamlit.io/develop/api-reference/data/st.column_config/st.column_config.progresscolumn?utm_source=streamlit. for progress column.
-
-https://www.geeksforgeeks.org/machine-learning/standardscaler-minmaxscaler-and-robustscaler-techniques-ml/ - robust scaling
+## Acknowledgements
+* I would like to thank my mentor, Mo Shami, for his guidance and support throughout this project. His feedback helped strengthen the validation of my hypotheses within the Streamlit app, and our discussions around machine learning provided valuable direction and insight. His experience and advice were truly invaluable.
+* I would like to thank my partner and family for their unwavering support during this project.
+* I woud like to thank tutor support and the discord group for data analytics. Tom helped with early problems when installing requirements.txt and the discord group provided advice around the slugignore file.
