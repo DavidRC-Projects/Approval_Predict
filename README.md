@@ -334,42 +334,25 @@ The main fixes were:
 - Ensuring two blank lines before function definitions
 - Removing duplicated imports and following PEP8 import ordering
 
-## Unfixed Bugs
-* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used.
-
-Added the code ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} \
-    && rm {DestinationFolder}/*.zip \
-    && rm kaggle.json
-    this required - o to overwrite the zip command as there as already a csv file uploaded
-
-	ValueError: Could not interpret value `loan_to_income` for `x`. An entry with this name does not appear in `data`.
-	Fixed the plot numerical function by adding df['loan_to_income'] = df['loan_amount'] / df['income'] as when plot_numerical was called it was unable to find the loan_to_income variable. This code had already been noted prior to the function. 
-
-	NameError: name 'load_pkl_file' is not defined
-load_pkl_file was undefined because src/data_management.py tried to use the Streamlit cache decorator without setting it up first, which caused the module import to fail and the function never got defined. I added a tiny shim:
-
-Fix:from data_management import load_loan_approval_data, load_pkl_file
-
-However src folder was missed
-
-ModuleNotFoundError: No module named 'data_management'
-Traceback:
-File "/home/cistudent/.local/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-File "/home/cistudent/.local/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
-    exec(code, module.__dict__)
-File "/workspaces/Approval_Predict/apps.py", line 6, in <module>
-    from app_pages.page_approval_predictor import page_approval_predictor_body
-File "/workspaces/Approval_Predict/app_pages/page_approval_predictor.py", line 4, in <module>
-    from data_management import load_loan_approval_data, load_pkl_file
-
-From src.data_management import load_loan_approval_data, load_pkl_file
-
-set_page_config() must be the first Streamlit command
-
-This was fixed by st.subheader("Correlation analysis") not being inside the function due to an indentation error.
-
+## Bug Fixes and Unfixed Bugs
+There were no unresolved bugs to my knowledge after manual testing.
+Please see the following bug fixes below:
+1. Kaggle ZIP Extraction Command Overwrite Issue
+- Fix: I added -o to ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} due to csv file already existing and causing overwrite prompts.
+2. ValueError: Could not interpret value 'loan_to_income' for 'x'
+- Bug: The function plot_numerical() referenced loan_to_income before it was created.
+- Fix: Added the calculation earlier in the workflow: df['loan_to_income'] = df['loan_amount'] / df['income']
+3. load_pkl_file Not Defined
+- Bug: This occurred because the import failed when src.data_management attempted to use a Streamlit cache decorator before Streamlit was initialised.
+- Fix: Corrected import to reference the src module
+4. ModuleNotFoundError: No module named 'data_management'
+- Bug: Caused by referencing the module without the src. prefix
+- Fix: Updated import path to include src.data_management
+5. TypeError: tuple indices must be integers or slices
+- Bug: Caused by a trailing comma that turned the radio widget return into a tuple
+- Fix: Removed the comma
+6. Streamlit pages approval predictor and feature impact showed some blank information
+- Fix: Added error handling, removed .filter() from both pages and comma on multipage so page becomes a dictionary.
 
 ## Deployment
 ### Heroku
