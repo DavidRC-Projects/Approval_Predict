@@ -245,14 +245,91 @@ The technologies used throughout the development are listed below:
 
 #### User Story Testing
 
-Dashboard was manually tested using user stories as a basis for determining success.
+**Dashboard Testing**: This was manually tested using user stories. All pages were tested for responsiveness and functioned as intended for all pages on mobile, tablets and desktop sizes. The sidebar highlights the active page and takes the user to each page as intended.
+
+**Jupyter Notebook Testing**: All Jupyter notebooks used during the project were tested individually. Each notebook executed successfully from start to finish without errors, and all cells produced the expected outputs. This confirms that the data processing, feature engineering, model training workflows, and visualisations behave as intended.
+
+<br>
+
+**As a non-technical user, I can access a project summary that explains the dataset and business requirements, giving me an overview of the project.**
+
+| Feature | Action | Expected Result | Actual Result |
+|---------|--------|----------------|---------------|
+| Project summary page | Open the summary page | Page loads correctly and all sections are accessible | Functions as intended |
+| README link | Click the link to GitHub README | Opens the correct GitHub page in a new tab | Functions as intended |
+| Text formatting | Check bold text, headers and bullet lists | All formatting displays correctly in Streamlit | Functions as intended |
+
+<br>
+<br>
+
+**As a non-technical user, I can review the project hypotheses and their validation results to understand the goals of the analysis and whether they were achieved.**
+
+| Feature | Action | Expected Result | Actual Result |
+|---------|--------|----------------|---------------|
+| Project findings page | Navigate to page | Selecting the page from the sidebar opens it correctly | Functions as intended |
+| Text formatting | Check bold text, headers and bullet lists | All formatting displays correctly in Streamlit | Functions as intended |
+
+<br>
+<br>
+
+**As a non-technical user, I can input my own data into the model and receive a loan approval prediction, fulfilling Business Requirement 2.**
+
+| Feature | Action | Expected Result | Actual Result |
+|---------|--------|----------------|---------------|
+| Prediction page | Navigate to page | Clicking on navbar link in sidebar navigates to correct page | Functions as intended |
+| Enter live data | Interact with widgets | All widgets are interactive, respond to user input | Functions as intended |
+| Live prediction | Click on 'Run Predictive Analysis' button | Clicking on button displays message on page with prediction and % chance | Functions as intended |
+| Input validation | Enter zero income | Error message displayed stating value must be greater or equal to 30053 | Functions as intended |
+| Input validation | Enter zero requested loan amount | Error message displayed stating value must be greater or equal to 1022 | Functions as intended |
+| Input validation | Enter zero credit score | Error message displayed stating value must be greater or equal to 300 | Functions as intended |
+| Input validation | Enter 41 years employed | Error message displayed stating value must be less than or equal to 40 | Functions as intended |
+
+<br>
+<br>
+
+**As a technical user, I can explore the correlation analysis to understand how different features influence loan approval and how the model’s insights were derived.**
+
+| Feature | Action | Expected Result | Actual Result |
+|---------|--------|----------------|---------------|
+| Correlation Study page | Navigate to page | Clicking on navbar link in sidebar navigates to correct page | Functions as intended |
+| Correlation data | View correlation results | Correlation data is displayed on dashboard | Functions as intended |
+| Feature distributions | View numerical feature plots | Plots are displayed showing distributions by approval status | Functions as intended |
+| Parallel Plot | View parallel categories plot | Parallel plot is displayed on dashboard, is interactive | Functions as intended |
+
+
+<br>
+<br>
+
+
+**As a technical user, I can view detailed model performance metrics and supporting statistics so that I can evaluate how well the model predicts loan approval (Business Requirement 2).**
+
+| Feature | Action | Expected Result | Actual Result |
+|---------|--------|----------------|---------------|
+| Model performance page | Navigate to page | Clicking on navbar link in sidebar navigates to correct page | Functions as intended |
+| Success metrics | View page | Success metrics outlined in business case are displayed | Functions as intended |
+| Feature Importance | View page | Most important features are plotted and displayed | Functions as intended |
+| Model Performance | View page | Confusion matrix for train and test sets are displayed | Functions as intended |
+
+<br>
 
 ### Validation Testing
 
 I used the [CI Python Linter](https://pep8ci.herokuapp.com/#) and followed the [PEP8 guidelines](https://peps.python.org/pep-0008/) to validate my code.
 
-As a result of the linting process, I made the following adjustments:
+The following pages where reviewed and edited using the linting process:
+- all files in the folder app_pages
+- all files in the folder jupyter notebooks
+- all files in the src folder
+- app.py
 
+The main fixes were:
+- Removing trailing whitespace and blank lines with spaces
+- Breaking up long lines to meet the 79-character limit
+- Fixing indentation errors
+- Adding missing whitespace around operators and commas
+- Correcting continuation line indentation in multi-line statements
+- Ensuring two blank lines before function definitions
+- Removing duplicated imports and following PEP8 import ordering
 
 ## Unfixed Bugs
 * You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used.
