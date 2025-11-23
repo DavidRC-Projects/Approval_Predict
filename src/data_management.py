@@ -12,9 +12,11 @@ def load_loan_approval_data():
         df = pd.read_csv(file_path)
 
         if df.empty:
-            "Dataset file is empty. Please check the data collection "
-            "process."
-        st.stop()
+            st.error(
+                "Dataset file is empty. Please check the data collection "
+                "process."
+            )
+            st.stop()
 
         return df
 

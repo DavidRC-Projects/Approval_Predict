@@ -14,64 +14,68 @@ def page_approval_predictor_body():
     Creates a single row dataframe containing applicants inputs.
     Has button to run prediction and display results.
     """
-    st.title("ML Pipeline: Approval Predictor")
+    try:
+        st.title("ML Pipeline: Approval Predictor")
 
-    version = "v2"
-    pipeline = load_pkl_file(
-        f"outputs/ml_pipeline/approval_prediction/"
-        f"{version}/classification_pipeline.pkl"
-    )
-
-    st.info(
-        "#### **Business Requirement 2**: Applicant Guidance\n\n"
-        "* Predict if an applicant will be approved using a Logistic "
-        "Regression pipeline trained.\n"
-        "* Success metrics: ≥80% recall and ≥80% precision on the "
-        "approved class (train & test).\n"
-        "* Provide transparent feedback to help applicants improve "
-        "their approval odds."
-    )
-
-    dataset = load_dataset()
-    ranges = {
-        "income": (
-            int(dataset["income"].min()),
-            int(dataset["income"].max()),
-        ),
-        "loan_amount": (
-            int(dataset["loan_amount"].min()),
-            int(dataset["loan_amount"].max()),
-        ),
-        "credit_score": (
-            int(dataset["credit_score"].min()),
-            int(dataset["credit_score"].max()),
-        ),
-        "years_employed": (
-            int(dataset["years_employed"].min()),
-            int(dataset["years_employed"].max()),
-        ),
-    }
-    st.markdown(
-        (
-            "Please use the input ranges (based on training data). Adjust the "
-            "values below to see how they impact loan approval.\n"
-            f"- **Income:** `${ranges['income'][0]:,} — "
-            f"${ranges['income'][1]:,}`\n"
-            f"- **Loan amount:** `${ranges['loan_amount'][0]:,} — "
-            f"${ranges['loan_amount'][1]:,}`\n"
-            f"- **Credit score:** `{ranges['credit_score'][0]} — "
-            f"{ranges['credit_score'][1]}`\n"
-            f"- **Years employed:** `{ranges['years_employed'][0]} — "
-            f"{ranges['years_employed'][1]} years`"
+        version = "v2"
+        pipeline = load_pkl_file(
+            f"outputs/ml_pipeline/approval_prediction/"
+            f"{version}/classification_pipeline.pkl"
         )
-    )
-    X_live = draw_input_widgets(dataset)
 
-    if st.button("Run Predictive Analysis"):
-        prediction = predict_loan_approval(X_live, pipeline)
-        guidance(X_live, dataset, prediction)
-        display_loan_to_income(X_live)
-        display_loan_to_income_summary(X_live, dataset)
+        st.info(
+            "#### **Business Requirement 2**: Applicant Guidance\n\n"
+            "* Predict if an applicant will be approved using a Logistic "
+            "Regression pipeline trained.\n"
+            "* Success metrics: ≥80% recall and ≥80% precision on the "
+            "approved class (train & test).\n"
+            "* Provide transparent feedback to help applicants improve "
+            "their approval odds."
+        )
+
+        dataset = load_dataset()
+        ranges = {
+            "income": (
+                int(dataset["income"].min()),
+                int(dataset["income"].max()),
+            ),
+            "loan_amount": (
+                int(dataset["loan_amount"].min()),
+                int(dataset["loan_amount"].max()),
+            ),
+            "credit_score": (
+                int(dataset["credit_score"].min()),
+                int(dataset["credit_score"].max()),
+            ),
+            "years_employed": (
+                int(dataset["years_employed"].min()),
+                int(dataset["years_employed"].max()),
+            ),
+        }
+        st.markdown(
+            (
+                "Please use the input ranges (based on training data). Adjust the "
+                "values below to see how they impact loan approval.\n"
+                f"- **Income:** `${ranges['income'][0]:,} — "
+                f"${ranges['income'][1]:,}`\n"
+                f"- **Loan amount:** `${ranges['loan_amount'][0]:,} — "
+                f"${ranges['loan_amount'][1]:,}`\n"
+                f"- **Credit score:** `{ranges['credit_score'][0]} — "
+                f"{ranges['credit_score'][1]}`\n"
+                f"- **Years employed:** `{ranges['years_employed'][0]} — "
+                f"{ranges['years_employed'][1]} years`"
+            )
+        )
+        X_live = draw_input_widgets(dataset)
+
+        if st.button("Run Predictive Analysis"):
+            prediction = predict_loan_approval(X_live, pipeline)
+            guidance(X_live, dataset, prediction)
+            display_loan_to_income(X_live)
+            display_loan_to_income_summary(X_live, dataset)
+    except Exception as e:
+        st.error(f"An error occurred while loading the Approval Predictor page: {str(e)}")
+        st.exception(e)
 
 
 def load_dataset():
