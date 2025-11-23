@@ -21,10 +21,10 @@ def page_summary_body():
         "* We created a workplace scenario where loan officers need "
         "decision support with an aim to process applications faster.\n\n"
         "**Key Terminology**\n"
-        "* **Applicant** is a person requesting the loan.\n"
-        "* **Approved loan** is an application accepted for funding.\n"
-        "* **Rejected loan** is an application denied.\n"
-        "* **Loan-to-income ratio** is the loan amount divided by annual "
+        "* **Applicant**: a person requesting the loan.\n"
+        "* **Approved loan**: an application accepted for funding.\n"
+        "* **Rejected loan**: an application denied.\n"
+        "* **Loan-to-income ratio**: the loan amount divided by annual "
         "income."
     )
 

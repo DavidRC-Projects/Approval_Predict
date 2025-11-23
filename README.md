@@ -279,10 +279,13 @@ The technologies used throughout the development are listed below:
 | Prediction page | Navigate to page | Clicking on navbar link in sidebar navigates to correct page | Functions as intended |
 | Enter live data | Interact with widgets | All widgets are interactive, respond to user input | Functions as intended |
 | Live prediction | Click on 'Run Predictive Analysis' button | Clicking on button displays message on page with prediction and % chance | Functions as intended |
-| Input validation | Enter zero income | Error message displayed stating value must be greater or equal to 30053 | Functions as intended |
+| Input validation | Enter zero income | Error message displayed stating value must be greater or equal to 30,053 | Functions as intended |
 | Input validation | Enter zero requested loan amount | Error message displayed stating value must be greater or equal to 1022 | Functions as intended |
 | Input validation | Enter zero credit score | Error message displayed stating value must be greater or equal to 300 | Functions as intended |
 | Input validation | Enter 41 years employed | Error message displayed stating value must be less than or equal to 40 | Functions as intended |
+| High risk and high loan-to-income(LTI) ratio | Enter lowest value for income, credit score and years employed and highest value for loan amount | Provided guidance of 100.0% probability that this applicant will not be approved, with a 1.66 LTI and high risk band | Functions as intended |
+|  Moderate risk and moderate loan-to-income(LTI) ratio | Enter middle value for income, credit score, years employed and loan amount | Provided guidance of a 0.33 LTI and moderate risk band | Functions as intended |
+| Low risk and low loan-to-income(LTI) ratio | Enter highest value for income, credit score and years employed and lowest value for loan amount | Provided guidance of 100.0% probability that this applicant will be approved, with a 0.01 LTI and low risk band | Functions as intended |
 
 <br>
 <br>
