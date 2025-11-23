@@ -29,8 +29,7 @@ def page_summary_body():
     )
 
     st.write(
-        f"* For full context, refer to the "
-        f"[Project README]"
+        "* For full context, refer to the [Project README]"
         "(https://github.com/DavidRC-Projects/Approval_Predict)."
     )
 
