@@ -13,7 +13,7 @@ Approval Predictor is a machine-learning (ML) project using a publicly available
 - [Dashboard Design](#dashboard-design)
 - [Technologies Used](#technologies-used)
 - [Testing](#testing)
-- [Unfixed Bugs](#unfixed-bugs)
+- [Bug Fixes](#bug-fixes-and-unfixed-bugs)
 - [Deployment](#deployment)
 - [Credits](#credits)
 - [Acknowledgements](#acknowledgements)
@@ -334,6 +334,8 @@ The main fixes were:
 - Ensuring two blank lines before function definitions
 - Removing duplicated imports and following PEP8 import ordering
 
+[Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
+
 ## Bug Fixes and Unfixed Bugs
 There were no unresolved bugs to my knowledge after manual testing.
 Please see the following bug fixes below:
@@ -353,25 +355,71 @@ Please see the following bug fixes below:
 - Fix: Removed the comma
 6. Streamlit pages approval predictor and feature impact showed some blank information
 - Fix: Added error handling, removed .filter() from both pages and comma on multipage so page becomes a dictionary.
+7. Heroku Deployment Failure (Wrong Entry File)
+- Bug: The application failed to deploy on Heroku because the Procfile referenced app.py, but the file was mistakenly named apps.py
+- Fix: Renamed apps.py to app.py to match Procfile.
+
+[Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
 
 ## Deployment
 ### Heroku
 
-* The App live link is: https://YOUR_APP_NAME.herokuapp.com/ 
-* Set the runtime.txt Python version to a [Heroku-24](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
+* The App live link is: [Approval Predictor](https://approvalpredictor-09300f76f3c7.herokuapp.com/)
 
-1. Log in to Heroku and create an App
+To deploy the Heroku app i followed the following steps:
+
+1. Add setup.sh to the working directory with the following code:
+```
+mkdir -p ~/.streamlit/
+echo "\
+[server]\n\
+headless = true\n\
+port = $PORT\n\
+enableCORS = false\n\
+\n\
+" > ~/.streamlit/config.toml
+```
+2. Set the runtime.txt Python version to a [Heroku-24](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version(```python-3.12.1```)
+3. Add a Procfile to the working directory with the following code:
+```
+web: sh setup.sh && streamlit run app.py
+```
+4. Log in to Heroku and create an App.
 2. At the Deploy tab, select GitHub as the deployment method.
 3. Select your repository name and click Search. Once it is found, click Connect.
 4. Select the branch you want to deploy, then click Deploy Branch.
 5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
 6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+7. Troubleshoot any build errors by reviewing the build log.
 
+## Forking
+If you wish to fork this repository, please follow the instructions below:
 
-## Main Data Analysis and Machine Learning Libraries
-* Here you should list the libraries you used in the project and provide an example(s) of how you used these libraries.
+1. On the main repository page, click the Fork button in the top-right corner.
+2. Choose the desired Owner for the fork from the dropdown menu.
+3. (Optional) Rename the repository if you want to differentiate it from the original.
+4. (Optional) Add a description to explain the purpose of your fork.
+5. Ensure “Copy the main branch only” is checked.
+6. Click Create fork to complete the process.
 
+## Cloning
+To clone this repository to your local machine:
+
+1. On the main repository page, click the Code button.
+2. Copy the HTTPS URL provided.
+3. Open your terminal and navigate to the directory where you want the repository to be saved.
+4. Run the command: git clone <paste-the-copied-URL>
+5. Press Enter to clone the repository into your selected location.
+
+### Installing Requirements
+
+The requirements.txt file contains only the packages required for deploying the dashboard to Heroku, due to Heroku’s slug size limitations.
+
+To install all dependencies needed for full local development and notebook execution, run the following command in your terminal:
+
+```pip install -r all-requirements.txt```
+
+[Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
 
 ## Credits 
 
