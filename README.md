@@ -4,6 +4,8 @@
 
 Approval Predictor is a machine-learning (ML) project using a publicly available dataset to determine whether a ML pipeline could be built to predict whether a loan application will be approved or rejected. This was achieved by using a classification task, using the `loan_approved` attribute from the dataset as the target and the remaining attributes as features.
 
+This project helps applicants understand their likelihood of loan approval by analysing the two strongest predictors: credit score and loan-to-income ratio. It delivers highly accurate approval predictions and provides clear, actionable guidance on how applicants can improve these metrics to increase their chances of approval.
+
 ## Table of Contents
 
 - [Dataset Content](#dataset-content)
