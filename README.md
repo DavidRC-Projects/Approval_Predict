@@ -156,6 +156,57 @@ The mapping of business requirements to specific tasks was determined through th
 - Hyperparameter optimisation is necessary to meet the 80%+ precision and recall success metrics defined in the business case.
 - The model's probability outputs enable actionable guidance by showing applicants how feature changes affect approval odds.
 
+### Visualisation Strategy
+
+A visualisation strategy was developed to address both business requirements and support hypothesis validation. Each visualisation type was selected based on its ability to reveal specific patterns and relationships in the data.
+
+#### Visualisation Types and Rationale
+
+**1. Histograms with Kernel Density Estimation (KDE)**
+- **Purpose**: Examine the distribution of numerical features and compare distributions between approved and rejected applicants
+- **Why**: Histograms reveal the shape, spread, and central tendency of feature distributions. Adding KDE curves provides smooth density estimates that make patterns more visible. Side-by-side comparison by approval status helps identify features where approved and rejected applicants show distinct distributions
+- **Location**: Notebooks 02-03 (Data Exploration and Cleaning), Dashboard Page 2 (Feature Impact Analysis)
+- **Business value**: Identifies which features have the most distinct patterns between approved and rejected applications, directly addressing Business Requirement 1
+
+**2. Boxplots**
+- **Purpose**: Compare feature distributions between approved and rejected applicants, identifying outliers and quartile differences
+- **Why**: Boxplots provide a compact view of distribution characteristics (median, quartiles, outliers). They are particularly effective for comparing two groups (approved vs rejected).
+- **Location**: Notebooks 02-03, Dashboard Page 2 (Feature Impact Analysis)
+- **Business value**: Reveals which features show significant differences between approval groups, supporting feature ranking for Business Requirement 1
+
+**3. Correlation Heatmaps (Pearson, Spearman, PPS)**
+- **Purpose**: Quantify and visualise relationships between features and the target variable
+- **Why**: 
+  - **Pearson Correlation**: Measures linear relationships, essential for understanding direct associations
+  - **Spearman Correlation**: Captures monotonic relationships (non-linear but consistent direction), more robust to outliers
+  - **Predictive Power Score (PPS)**: Detects asymmetric relationships that traditional correlation might miss, providing a more complete picture
+- **Location**: Notebook 03 (Data Cleaning), Dashboard Page 2 (Feature Impact Analysis)
+- **Business value**: Provides the "ranked list of variables" requested in Business Requirement 1, with feature relevance
+
+**4. Parallel Categories Plots (Plotly)**
+- **Purpose**: Visualise multi-dimensional relationships across multiple features
+- **Why**: Parallel categories plots allow visualisation of how multiple features interact together in relation to the target. This helps with understanding complex relationships that simple correlation cannot capture.
+- **Location**: Dashboard Page 2 (Feature Impact Analysis)
+- **Business value**: Helps identify feature combinations that influence approval, supporting both business requirements
+
+**5. Feature Importance Bar Charts**
+- **Purpose**: Display the relative importance of features in the final ML model
+- **Why**: Bar charts provide a clear, ranked visualisation of feature contributions to model predictions. This directly answers which features are most influential in the classification task
+- **Location**: Notebook 06 (Final Model), Dashboard Page 5 (Final ML Model)
+- **Business value**: Validates feature selection and provides evidence for Business Requirement 1, while supporting Business Requirement 2 by showing which factors applicants should focus on
+
+**6. Confusion Matrices**
+- **Purpose**: Evaluate model performance by showing true positives, false positives, true negatives, and false negatives
+- **Why**: Confusion matrices provide a view of model performance, showing where the model succeeds and fails. Essential for understanding precision and recall metrics
+- **Location**: Notebooks 05-08 (Model Evaluation), Dashboard Page 5 (Final ML Model)
+- **Business value**: Demonstrates that Business Requirement 2 is met (80%+ precision and recall), providing transparency in model evaluation
+
+#### Visualisation Workflow
+
+1. **Exploratory Phase** (Notebooks 01-03): Histograms, boxplots, and correlation heatmaps identify key features and relationships
+2. **Model Evaluation Phase** (Notebooks 05-08): Feature importance charts and confusion matrices guide model selection and optimisation
+3. **Dashboard Phase** (Streamlit App): All visualisation types are integrated into interactive pages, making insights accessible to both technical and non-technical stakeholders
+
 [Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
 
 ## ML Business Case
@@ -174,7 +225,7 @@ Our ideal outcome is to provide our loan officers with reliable insight into pro
 - The model fails to achieve 80% recall for approved class
 - The model fails to achieve 80% precision for approved class
 
-The model output will be a flag, that indicaties if an applicant will be approved or not and the associated probability of approval.
+The model output will be a flag, that indicates if an applicant will be approved or not and the associated probability of approval.
 
 **The training data to fit the model comes from:** [Kaggle](https://www.kaggle.com/datasets/anishdevedward/loan-approval-dataset/data?select=loan_approval.csv)
 
