@@ -81,6 +81,44 @@ The client wants to know whether the data supports the following hypotheses:
 - **Null Hypothesis**
 -There is no significant relationship between applicant features and loan approval outcomes. Approval decisions cannot be predicted from these features due to insufficient data.
 
+## Statistical Validation of Hypotheses
+
+To validate the hypotheses statistically, we conducted correlation analyses using both Pearson and Spearman correlation coefficients. These correlation analyses provide quantitative measures of the strength and direction of relationships between features and loan approval outcomes.
+
+### Hypothesis Validation Results
+
+**Hypothesis 1: Credit Score and Approval Rates**
+
+- **Pearson Correlation**: Strong positive correlation with loan approval (one of the highest correlation values observed)
+- **Spearman Correlation**: Strong positive correlation, consistent with Pearson results
+- **Interpretation**: The strong positive correlation indicates that as credit scores increase, loan approval rates tend to increase. This relationship is evident in both linear (Pearson) and monotonic (Spearman) analyses.
+- **Conclusion**: **Hypothesis VALIDATED** - The strong positive correlation provides evidence that higher credit scores are associated with higher approval rates. Credit score is identified as the most important predictor in the final ML model.
+
+**Hypothesis 2: Employment History and Approval Rates**
+
+- **Pearson Correlation**: Weak positive correlation with loan approval
+- **Spearman Correlation**: Weak positive correlation, consistent with Pearson results
+- **Interpretation**: The weak correlation values indicate that years employed has minimal relationship with loan approval outcomes. The correlation is positive but very small, suggesting employment history has limited predictive power.
+- **Conclusion**: **Hypothesis NOT VALIDATED** - The weak correlation indicates that years employed does not have a strong relationship with loan approval outcomes. This feature adds minimal predictive value to the model.
+
+**Hypothesis 3: Loan-to-Income Ratio and Approval Rates**
+
+- **Pearson Correlation**: Moderate negative correlation with loan approval
+- **Spearman Correlation**: Moderate negative correlation, consistent with Pearson results
+- **Interpretation**: The negative correlation indicates that as loan-to-income ratio increases (higher loan amounts relative to income), approval rates tend to decrease. This moderate relationship suggests affordability is an important factor in approval decisions.
+- **Conclusion**: **Hypothesis VALIDATED** - The moderate negative correlation confirms that higher loan-to-income ratios are associated with lower approval rates. Loan-to-income ratio is identified as the second most important feature in the final ML model.
+
+### Overall Statistical Conclusion
+
+The correlation analysis demonstrates that:
+- **2 out of 3 hypotheses are validated** through correlation analysis
+- **Credit score** shows the strongest positive correlation with loan approval, making it the dominant predictor
+- **Loan-to-income ratio** shows a moderate negative correlation, confirming its importance as an affordability indicator
+- **Years employed** shows weak correlation, confirming it has limited predictive value
+- The correlation findings align with the feature importance rankings in the final ML model
+
+These findings support the use of credit score and loan-to-income ratio as key features in the machine learning model, while confirming that years employed has limited predictive value.
+
 [Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
 
 ## Mapping Business Requirements to Data Visualisation and ML Tasks

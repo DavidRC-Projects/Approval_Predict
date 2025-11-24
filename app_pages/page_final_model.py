@@ -106,7 +106,7 @@ def page_final_model_body():
         - The model correctly identifies approved applicants most of the time.
 
         ### Test Set Observations
-        - Precision (86%) and recall (88%) remain strong.
+        - Precision (86%) and recall (87%) remain strong.
         - Only a small drop from the train set.
 
         **Conclusion:**
