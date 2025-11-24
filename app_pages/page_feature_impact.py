@@ -79,19 +79,19 @@ def page_feature_impact_body():
 
         st.write("### Loan Applicant Feature Study")
         st.info(
-            "The goal of this analysis is to understand how different applicant "
-            "features such as income, credit score, employment history, points "
-            "and loan-to-income ratio influence loan approval patterns. This "
-            "helps identify the most relevant predictors contributing to "
-            "approval decisions."
+            "The goal of this analysis is to understand how different "
+            "applicant features such as income, credit score, employment "
+            "history, points and loan-to-income ratio influence loan approval "
+            "patterns. This helps identify the most relevant predictors "
+            "contributing to approval decisions."
         )
 
         st.subheader("Correlation Study Summary")
         st.write(
             "A correlation analysis was performed to explore how different "
-            "applicant features relate to loan approval outcomes. Understanding "
-            "these relationships helps identify the most influential factors in "
-            "the approval process.\n\n"
+            "applicant features relate to loan approval outcomes. "
+            "Understanding these relationships helps identify the most "
+            "influential factors in the approval process.\n\n"
             f"**Features included in the study:** {', '.join(vars_to_study)}"
         )
 
@@ -101,21 +101,23 @@ def page_feature_impact_body():
 
             st.write(
                 """
-                - **Points** and **Credit Score** are the strongest predictors.
-                Approved applicants consistently have *much higher* values, with
-                clear separation between approved and rejected groups.
+                - **Points** and **Credit Score** are the strongest
+                predictors.
+                Approved applicants consistently have *much higher* values,
+                with clear separation between approved and rejected groups.
 
                 - **Income** shows a moderate positive effect.
-                Higher-income applicants are more likely to be approved, but the
-                impact is less pronounced than points and credit score.
+                Higher-income applicants are more likely to be approved, but
+                the impact is less pronounced than points and credit score.
 
                 - **Loan Amount** has a mild negative relationship.
-                Applicants requesting larger loans tend to be rejected more often,
-                though the difference is not as strong as other variables.
+                Applicants requesting larger loans tend to be rejected more
+                often, though the difference is not as strong as other
+                variables.
 
                 - **Years Employed** shows only a weak relationship.
-                Longer employment history helps slightly, but there is substantial
-                overlap between the two groups.
+                Longer employment history helps slightly, but there is
+                substantial overlap between the two groups.
 
                 - The **Loan-to-Income Ratio** is a significant affordability
                 indicator. Lower ratios are associated with approvals, while
@@ -137,10 +139,10 @@ def page_feature_impact_body():
                 """
                 - **Points** and **Credit Score** show the strongest positive
                 correlation with loan approval.
-                - **Income** has a weak positive correlation, indicating a higher
-                income slightly improves approval.
-                - **Loan Amount** shows a slight negative relationship, suggesting
-                larger requests slightly reduce approval odds.
+                - **Income** has a weak positive correlation, indicating a
+                higher income slightly improves approval.
+                - **Loan Amount** shows a slight negative relationship,
+                suggesting larger requests slightly reduce approval odds.
                 - **Years Employed** has very small correlation with approval
                 outcomes.
                 """
@@ -159,12 +161,13 @@ def page_feature_impact_body():
             st.write(
                 """
                 - Applicants with **high points**, **high credit scores**, and
-                **low loan-to-income ratios** cluster strongly toward approval.
+                **low loan-to-income ratios** cluster strongly toward
+                approval.
                 - Applicants with **low points**, **low credit scores**, or
-                **high loan-to-income ratios** frequently fall into the rejected
-                category.
-                - The plot reinforces that **creditworthiness and affordability**
-                jointly drive approval outcomes.
+                **high loan-to-income ratios** frequently fall into the
+                rejected category.
+                - The plot reinforces that **creditworthiness and
+                affordability** jointly drive approval outcomes.
                 """
             )
 
@@ -172,9 +175,10 @@ def page_feature_impact_body():
             df_disc = discretize_for_parallel(df_eda)
 
             fig = px.parallel_categories(
-                df_disc[
-                    ['credit_score', 'points', 'loan_to_income', 'loan_approved']
-                    ],
+                df_disc[[
+                    'credit_score', 'points', 'loan_to_income',
+                    'loan_approved'
+                ]],
                 color="loan_approved",
                 color_continuous_scale=px.colors.sequential.Plasma
             )
@@ -242,5 +246,8 @@ def page_feature_impact_body():
             """
         )
     except Exception as e:
-        st.error(f"An error occurred while loading the Feature Impact page: {str(e)}")
+        st.error(
+            f"An error occurred while loading the Feature Impact page: "
+            f"{str(e)}"
+        )
         st.exception(e)

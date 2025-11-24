@@ -59,11 +59,11 @@ def page_project_findings_body():
 
     st.subheader("Model Success Metrics Highlights")
     col1, col2 = st.columns(2)
-    col1.metric("Recall (approved class)", "88%")
+    col1.metric("Recall (approved class)", "87%")
     col2.metric("Precision (approved class)", "86%")
 
     st.success(
-        "- Recall metric: The model correctly identifies 88% of all truly "
+        "- Recall metric: The model correctly identifies 87% of all truly "
         "approved applicants.\n"
         "- Precision metric: Out of all applications predicted as approved, "
         "86% are genuinely approved.\n"
