@@ -1,5 +1,7 @@
 # Approval Predictor - A Predictive Classification Model for Determining Loan Approval Outcomes
 
+![Approval Predictor](documentation/banner.png)
+
 Approval Predictor is a machine-learning (ML) project using a publicly available dataset to determine whether a ML pipeline could be built to predict whether a loan application will be approved or rejected. This was achieved by using a classification task, using the `loan_approved` attribute from the dataset as the target and the remaining attributes as features.
 
 ## Table of Contents
@@ -423,21 +425,29 @@ To install all dependencies needed for full local development and notebook execu
 
 ## Credits 
 
-https://docs.streamlit.io/develop/api-reference/status for markdown for error handling.
-https://docs.streamlit.io/develop/api-reference/data/st.column_config/st.column_config.progresscolumn?utm_source=streamlit. for progress column.
-
-https://www.geeksforgeeks.org/machine-learning/standardscaler-minmaxscaler-and-robustscaler-techniques-ml/ - robust scaling
-
 ### Content 
 
-Canvas - Logo design, README banner image.
+- [Streamlit Status API](https://docs.streamlit.io/develop/api-reference/status) for markdown for error handling.
+- [Streamlit ProgressColumn](https://docs.streamlit.io/develop/api-reference/data/st.column_config/st.column_config.progresscolumn?utm_source=streamlit.) for progress column.
+- [Robust Scaling Techniques](https://www.geeksforgeeks.org/machine-learning/standardscaler-minmaxscaler-and-robustscaler-techniques-ml/) - robust scaling
+- [AdaBoostClassifier Parameters](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) - Parameter definitions for AdaBoostClassifier
+- [RandomForestClassifier Parameters](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) - Parameter definitions for RandomForestClassifier
+- [Random Forest Algorithm](https://builtin.com/data-science/random-forest-algorithm) - Random Forest algorithm explanation
+- [XGBClassifier Parameters](https://xgboost.readthedocs.io/en/stable/parameter.html) - Parameter definitions for XGBClassifier
+- [LogisticRegression Parameters](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) - Parameter definitions for LogisticRegression
+- Code used in the exploratory data analysis notebook for the histogram and box plots were taken from the Code Institute "Churnometer" walkthrough project.
+- Code used in the exploratory data analysis notebook for the PPS heatmap function was taken from the Code Institute "Exploratory Data Analysis Tools" module.
+- Custom function used in the data cleaning notebook for checking the effect of data cleaning on distribution was taken from the Code Institute "Data Analytics Packages - ML: feature-engine" module.
+- Custom function used in the feature engineering notebook for analysing transformations was taken from the Code Institute "Data Analytics Packages - ML: feature-engine" module.
+- Custom function used in Evaluation notebook and hyperparameter optimisation notebook was taken from the Code Institute "Data Analytics Packages - ML: Scikit-learn" module.
+- Custom function for displaying the confusion matrix and analysing model performance used in Evaluation notebook and hyperparameter optimisation notebook was taken from the Code Institute "Data Analytics Packages - ML: Scikit-learn" module.
+* The multi-page class was taken from the Code Institute "Data Analysis & Machine Learning Toolkit".
 
 ### Media
 
-- The photos used on the home and sign-up page are from This Open-Source site
-- The images used for the gallery page were taken from this other open-source site
-
-
+- [IQR Method Tutorial](https://www.youtube.com/shorts/SH7TPbT6zqE) - YouTube video to work out Interquartile Range(IQR).
+- [Canvas](https://www.canva.com/design/DAG5jktwhGg/i6nhfKbVFhhxyLw-PvU4pA/edit?continue_in_browser=true&ui=eyJFIjp7IkE_IjoiViIsIkEiOiJ1cGxvYWRfZjk0MzBiNGItY2ZjNi00NDQ2LTk3ZmItN2Q2ZGFlNDZiM2Y1IiwiQiI6IkIifSwiRyI6eyJCIjp0cnVlLCJWIjp0cnVlfX0) - Logo design, README banner image
+- [Image Resizer](https://imageresizer.com/) -  to convert the readme banner into a png file.
 
 ## Acknowledgements
 * I would like to thank my mentor, Mo Shami, for his guidance and support throughout this project. His feedback helped strengthen the validation of my hypotheses within the Streamlit app, and our discussions around machine learning provided valuable direction and insight. His experience and advice were truly invaluable.
