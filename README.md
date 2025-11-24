@@ -26,7 +26,7 @@ The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/anishdevedw
 
 This dataset shows loan applications and approval outcomes for 2,000 individuals. It contains demographic, financial, and employment-related attributes that can be used to predict whether a loan application will be approved or rejected. The data has 8 columns and 2000 rows, this dataset size will be useful as its large enough to hopefully demonstrate patterns in the data and small enough to run quickly in codespace.
 
-**Note**: While the dataset includes `name` and `city` fields, these are excluded from the machine learning model and are fictious. The model only uses anonymised numerical features in the predictive pipeline.
+**Note**: While the dataset includes `name` and `city` fields, these are excluded from the machine learning model and are fictious. The model only uses synthetic numerical features in the predictive pipeline.
 
 ```python
 df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
@@ -45,7 +45,7 @@ df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
 
 ## Dataset Source and Permissions
 
-This dataset is publicly available on Kaggle under the [loan-approval-dataset](https://www.kaggle.com/datasets/anishdevedward/loan-approval-dataset/data?select=loan_approval.csv) and is free to use for analysis and machine learning projects. The dataset contains loan application data with no personally identifiable information used in the model. The `name` and `city` fields present in the raw dataset are excluded from the machine learning pipeline.
+This dataset is publicly available on Kaggle under the [loan-approval-dataset](https://www.kaggle.com/datasets/anishdevedward/loan-approval-dataset/data?select=loan_approval.csv) and is free to use for analysis and machine learning projects. The dataset contains loan application data with synthetic data. The `name` and `city` fields present in the raw dataset will be excluded from the machine learning pipeline.
 
 ## Project Terms & Jargon
 
@@ -283,20 +283,26 @@ The technologies used throughout the development are listed below:
 
 ### Python Packages
 - **Pandas** - Open source library for data manipulation and analysis
-- **NumPy** - 
-- **YData Profiling** - 
-- **Matplotlib** - 
-- **Seaborn** - 
-- **Plotly** - 
-- **Feature-engine** -
-- **ppscore** - 
-- **scikit-learn** - 
+- **NumPy** - Package for numerical computing and array operations
+- **YData Profiling** - Automated exploratory data analysis and profiling reports
+- **Matplotlib** - Plotting library for creating static visualisations
+- **Seaborn** - Statistical data visualisation library built on Matplotlib
+- **Plotly** - Interactive plotting library for creating dynamic visualisations
+- **Feature-engine** - Feature engineering and transformation library for ML pipelines
+- **ppscore** - Predictive Power Score library for detecting non-linear relationships
+- **scikit-learn** - Machine learning library for classification and regression
+- **Streamlit** - Framework for building interactive web applications and dashboards
+- **scipy** - Scientific computing library for statistical functions and algorithms
+- **joblib** - Library for loading of Python objects
+- **imbalanced-learn** - Library for handling imbalanced datasets using SMOTE and other techniques
 
 ### Other Technologies
 - **Git** - For version control
 - **GitHub** - Code repository
 - **Heroku** - For application deployment
 - **Jupyter Notebooks** - For exploratory data analysis and model development
+- **VS Code** - Integrated development environment for code editing
+- **Codespace** - Cloud-based development environment for running and testing code
 
 [Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
 
