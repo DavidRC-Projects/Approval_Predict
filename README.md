@@ -26,6 +26,8 @@ The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/anishdevedw
 
 This dataset shows loan applications and approval outcomes for 2,000 individuals. It contains demographic, financial, and employment-related attributes that can be used to predict whether a loan application will be approved or rejected. The data has 8 columns and 2000 rows, this dataset size will be useful as its large enough to hopefully demonstrate patterns in the data and small enough to run quickly in codespace.
 
+**Note**: While the dataset includes `name` and `city` fields, these are excluded from the machine learning model and are fictious. The model only uses anonymised numerical features in the predictive pipeline.
+
 ```python
 df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
 ```
@@ -41,6 +43,9 @@ df = pd.read_csv('/kaggle/input/loan-approval-dataset/loan_approval.csv')
 | points            | Mortgage discount points paid upfront                         | Points (10 - 100)                                             |
 | loan_approved     | Whether loan was approved or not                               | True or False (Target variable)                               |
 
+## Dataset Source and Permissions
+
+This dataset is publicly available on Kaggle under the [loan-approval-dataset](https://www.kaggle.com/datasets/anishdevedward/loan-approval-dataset/data?select=loan_approval.csv) and is free to use for analysis and machine learning projects. The dataset contains loan application data with no personally identifiable information used in the model. The `name` and `city` fields present in the raw dataset are excluded from the machine learning pipeline.
 
 ## Project Terms & Jargon
 
@@ -96,6 +101,22 @@ The client wants to know whether the data supports the following hypotheses:
 - Hyperparameter optimisation will give us the best chance at a highly accurate prediction.
 - The model will provide actionable guidance to applicants on how to improve their approval odds.
 - This will be carried out during the Model Training and Optimisation.
+
+### Rationale to Map Business Requirements to Data Visualisations and ML Tasks
+The mapping of business requirements to specific tasks was determined through the following rationale:
+
+**For Business Requirement 1 (Feature Correlation Analysis):**
+- Data visualisation and correlation studies are the first steps to understand which features drive loan approval decisions before building the predictive model.
+- Pearson and Spearman correlation analyses provide measures of feature relationships, addressing the user need for a "ranked list of variables."
+- Visual plots (histograms, boxplots, heatmaps) make patterns accessible to both technical and non-technical stakeholders.
+- The exploratory analysis directly answers "which variables are most strongly correlated" before committing to a specific ML approach.
+
+**For Business Requirement 2 (Classification Model):**
+- Binary classification is the appropriate ML task because the target variable (`loan_approved`) has exactly two classes (approved/rejected).
+- A supervised learning approach is required since we have historical approval data with known outcomes to learn from.
+- A machine learning pipeline ensures reproducible preprocessing and model training.
+- Hyperparameter optimisation is necessary to meet the 80%+ precision and recall success metrics defined in the business case.
+- The model's probability outputs enable actionable guidance by showing applicants how feature changes affect approval odds.
 
 [Back to top](#approval-predictor---a-predictive-classification-model-for-determining-loan-approval-outcomes)
 
