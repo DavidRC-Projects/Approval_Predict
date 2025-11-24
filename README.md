@@ -279,51 +279,67 @@ The project was split into 5 Epics based upon the Data Visualisation and Machine
 
 ## Dashboard Design
 
-Page 1: Quick Project Summary
-- Quick summary of the Approval Prediction project.
-- Description of the datasetand its source.
-- State the business requirements:
-- Build a model to predict loan approval with 80%+ precision and recall.
-- Provide actionable insights to help applicants improve their approval odds.
+**Page 1: Quick Project Summary**
+- Provide an overview of the Approval Prediction project and dataset context.
+- Display a dataset snapshot.
+- Define key terminology used.
+- Link to the full project README for additional documentation.
+- Summarise the two business requirements.
 
-Page 2: Feature Impact Study
-- Business requirement addressed: Analyse a model that uses the points feature.
-- Before analysis we expected this page to highlight a high level of accuracy achieved with points.
-- After analysis, the page shows:
-- Business requirement 1 results using the points-driven model.
-- Checkbox: Explore dataset shape and preview records.
-- Highlight that points has 100% feature importance.
-- Checkbox: Plots showing approval split by points threshold.
-- Checkbox: Parallel plot comparing points vs other features.
+**Page 2: Feature Impact Analysis**
+- **Business requirement**: Requirement 1 - Feature insight analysis.
+- Display dataset overview with shape information and a preview of the first 5 records.
+- Provide a correlation study summary explaining how different applicant features relate to loan approval outcomes.
+- **Numerical Feature Analysis**:
+  - Expandable summary of insights for each numerical feature.
+  - Expandable section showing histograms with KDE and boxplots comparing distributions for all numerical features.
+- **Correlation Heatmap Analysis**:
+  - Expandable summary of correlation insights.
+  - Expandable heatmap visualisation.
+- **Parallel Categories Plot Analysis**:
+  - Expandable summary.
+  - Interactive Plotly parallel categories plot showing relationships between credit_score, points, loan_to_income, and loan_approved.
+- **Top 5 Correlation Rankings**:
+  - Displays top 5 Pearson correlations with loan approval.
+  - Displays top 5 Spearman correlations with loan approval.
+  - Both presented as interactive data tables with progress columns showing correlation strength.
 
-Page 3: Approval Predictor (Without Points)
-- Business requirement addressed: Provide a reliable prediction tool using applicant features only.
-- Input widgets for applicant profile:
-- Credit score, income, loan amount and years employed.
-- “Run Predictive Analysis” button:
-- Sends values to the optimised LogisticRegression pipeline.
-- Predicts approval outcome and associated probability.
-- Provides tailored guidance based on feature contributions (e.g., “Increase credit score above X”).
-- Provides the loan_to_income value and provides a risk band.
+**Page 3: ML Pipeline - Approval Predictor**
+- **Business requirement addressed**: Requirement 2 - Applicant guidance tool.
+- Displays success metrics: Above 80% recall and 80% precision on the approved class (train & test).
+- **Input widgets**
+- Arranged in 4 columns
+- **"Run Predictive Analysis" button**:
+  - Sends user inputs to the optimised LogisticRegression pipeline (v2).
+  - Predicts approval outcome and associated probability.
+  - Provides tailored guidance based on feature contributions to help applicants improve their approval odds.
+  - Displays the calculated loan-to-income ratio as a metric.
+  - Displays a loan-to-income risk band (Low Risk, Below Average Risk, Moderate Risk, or High Risk) with quartile-based evaluation and improvement tips.
 
-Page 4: Project Hypotheses and Findings
-- Before analysis, we listed hypotheses to validate. After analysis, we can report:
-- Applicants with higher points always get approved.
-- Confirmed: points feature dominates approval decisions.
-- Approval probability is predictable using others features and removing points.
-- Confirmed in Notebook 06: credit_score, loan_to_income, and income drive final predictions.
-- Confirmed: Final model gives 87% recall / 86% precision with actionable insights.
+**Page 4: Project Hypotheses and Findings**
+- Displays both business requirements (Requirement 1 and Requirement 2).
+- **Initial Hypotheses and Validation** section:
+  - Lists the three hypotheses tested before modelling:
+    - Higher credit scores lead to more approvals.
+    - Longer employment history improves approval odds.
+    - High loan-to-income ratios reduce approval chances.
+- **Model Success Metrics Highlights**:
+  - Displays recall and precision for the approved class as metrics.
+  - Explains what these metrics mean and their business value.
 
-Page 5: Final ML Model (Without Points)
-- Key takeaways after training the final pipeline (Notebook 06).
-- ML pipeline steps:
-- BoxCox transformation (loan_to_income only).
-- Robust scaling.
-- LogisticRegression (C=0.1, penalty=l2, class_weight=None).
-- Feature importance chart showing:
-- credit_score, loan_to_income, income, years_employed, loan_amount.
-- Pipeline performance metrics:
-- Train and test sets.
+**Page 5: Final ML Model**
+- **Feature Importance Summary**:
+  - Explain what the feature importance plot reveals.
+  - Highlights the feature that is the dominant predictor.
+  - Discuss impact on loan approval.
+- **Feature Importance Plot**:
+  - Displays the saved feature importance bar chart image showing the relative importance of relevant features.
+- **Model Performance Overview**:
+  - Train vs Test performance summary.
+  - Explains findings including precision and recall of test and train sets.
+- **Detailed Model Performance**:
+  - Display confusion matrices for both train and test sets.
+  - Show classification reports with precision, recall, F1-score, and support for both classes (Rejected and Approved).
 
 ## Technologies Used
 
