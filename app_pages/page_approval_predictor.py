@@ -2,7 +2,10 @@ import pandas as pd
 import streamlit as st
 
 from src.data_management import load_loan_approval_data, load_pkl_file
-from src.machine_learning.approval_predictor import predict_loan_approval
+from src.machine_learning.approval_predictor import (
+    APPROVAL_FEATURES,
+    predict_loan_approval,
+)
 from src.approval_guidance import guidance
 
 
@@ -69,6 +72,7 @@ def page_approval_predictor_body():
         X_live = draw_input_widgets(dataset)
 
         if st.button("Run Predictive Analysis"):
+            X_live = X_live[APPROVAL_FEATURES]
             prediction = predict_loan_approval(X_live, pipeline)
             guidance(X_live, dataset, prediction)
             display_loan_to_income(X_live)

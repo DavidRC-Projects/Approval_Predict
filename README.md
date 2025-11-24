@@ -333,19 +333,19 @@ The technologies used throughout the development are listed below:
 - **Python** - Primary programming language for data analysis and machine learning
 
 ### Python Packages
-- **Pandas** - Open source library for data manipulation and analysis
-- **NumPy** - Package for numerical computing and array operations
-- **YData Profiling** - Automated exploratory data analysis and profiling reports
-- **Matplotlib** - Plotting library for creating static visualisations
-- **Seaborn** - Statistical data visualisation library built on Matplotlib
-- **Plotly** - Interactive plotting library for creating dynamic visualisations
-- **Feature-engine** - Feature engineering and transformation library for ML pipelines
-- **ppscore** - Predictive Power Score library for detecting non-linear relationships
-- **scikit-learn** - Machine learning library for classification and regression
-- **Streamlit** - Framework for building interactive web applications and dashboards
-- **scipy** - Scientific computing library for statistical functions and algorithms
-- **joblib** - Library for loading of Python objects
-- **imbalanced-learn** - Library for handling imbalanced datasets using SMOTE and other techniques
+- **Pandas** - Used throughout all notebooks (01-08) for data loading, manipulation, DataFrame operations, and data cleaning.
+- **NumPy** - Used in notebooks 03, 06, and 08 for array operations, calculating mean and standard deviation of cross-validation scores.
+- **YData Profiling** - Used in notebooks 02, 03, and 04 to generate automated exploratory data analysis reports.
+- **Matplotlib** - Used in notebooks 03, 06, and 08 to create feature importance bar charts.
+- **Seaborn** - Used in notebooks 02, 03, and 04 to create correlation heatmaps, histograms and boxplots.
+- **Plotly** - Used in notebook 02 to create interactive parallel categories plots.
+- **Feature-engine** - Used in notebooks 06 and 08 with BoxCoxTransformer to normalise the loan_to_income feature.
+- **ppscore** - Used in notebook 03 to calculate Predictive Power Score matrix.
+- **scikit-learn** - Used in notebooks 06 and 08 for machine learning classifiers (LogisticRegression, RandomForestClassifier, AdaBoostClassifier),Grid searches and hyperparameter optimisation.
+- **Streamlit** - Used in all files within the app_pages folder to build the interactive dashboard application, including page navigation, user input widgets and data visualisation display.
+- **scipy** - Used in notebook 04 with scipy.stats to create Q-Q plots.
+- **joblib** - Used in notebook 06 to save the trained classification pipeline to disk.
+- **imbalanced-learn** - Used in notebooks 06 and 08 with SMOTE (Synthetic Minority Oversampling Technique) to handle class imbalance.
 
 ### Other Technologies
 - **Git** - For version control
